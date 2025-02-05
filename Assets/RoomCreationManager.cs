@@ -16,6 +16,7 @@ public class RoomCreationManager : MonoBehaviourPunCallbacks
     public Button ConnectBtn;
     public Button CloseBtn;
     public Button BotBtn;
+    public TMP_InputField PlayerName;
     public TextMeshProUGUI SearchingText;
     public Text MultiText;
 
@@ -37,7 +38,7 @@ public class RoomCreationManager : MonoBehaviourPunCallbacks
     // Called when connected to the Photon server
     public override void OnConnectedToMaster()
     {
-
+       
         PhotonNetwork.JoinLobby();
         Debug.Log("Connected to Photon Master Server");
         //LoadingScreen.SetActive(false);
@@ -50,7 +51,7 @@ public class RoomCreationManager : MonoBehaviourPunCallbacks
     // Create a room
     public void CreateRoom()
     {
-        requiredPlayers = 2; // Set this to the desired number of players for the room
+        requiredPlayers = 3; // Set this to the desired number of players for the room
         RoomOptions roomOptions = new RoomOptions
         {
             MaxPlayers = (byte)requiredPlayers
@@ -65,6 +66,8 @@ public class RoomCreationManager : MonoBehaviourPunCallbacks
     // Join a random room
     public void JoinRoom()
     {
+        OnlyData.Data.Playername = PlayerName.text;
+        PhotonNetwork.NickName = OnlyData.Data.Playername;
         PhotonNetwork.JoinRandomRoom();
         BotBtn.interactable = false;
         ConnectBtn.interactable = false;

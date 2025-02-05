@@ -41,6 +41,7 @@ MonoBehaviour:
   - RespawnSpaceship
   - ClientCheck
   - distanceValue
+  - ReceivePlayerDistances
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

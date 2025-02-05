@@ -32,6 +32,7 @@ public class GameManager : Singleton<GameManager> {
     public bool isDie { get; set; }
     public bool ReachGoal { get; set; }
 
+    public string MyDisdanceValue;
     private void Start() {
         Time.timeScale = 1f;
         isDie = false;
@@ -46,11 +47,14 @@ public class GameManager : Singleton<GameManager> {
             GamePause();
 
         //움직인 거리 계산하여 계속해서 text 갱신
-        if(!gameOverUI.activeSelf)
-            distanceText.text = (int)(carController.transform.position.x - carController.StartPos.x) + "m / <color=yellow>1427m</color>";
+        if (!gameOverUI.activeSelf)
+        {
+            distanceText.text = "You :" + (int)(carController.transform.position.x - carController.StartPos.x) + "m / <color=yellow>1427m</color>";
+            MyDisdanceValue= (int)(carController.transform.position.x - carController.StartPos.x) + "m / <color=yellow>1427m</color>";
+        }
 
         //게임오버/성공 후 한번 더 터치하면 게임 재시작
-        if(isDie && Input.GetMouseButtonDown(0) && gameOverUI.activeSelf) 
+        if (isDie && Input.GetMouseButtonDown(0) && gameOverUI.activeSelf) 
             LoadScene(0);
 
         //엔진/브레이크 버튼 누를 시에 사운드 재생
@@ -173,7 +177,17 @@ public class GameManager : Singleton<GameManager> {
     }
 
     private IEnumerator GameOver() {
-        if(!ReachGoal) yield return new WaitForSeconds(4f);
+
+        if (OnlyData.Data.gametype == GameType.Multi)
+        {
+            PhotonNetwork.LeaveRoom();
+        }
+        else if(OnlyData.Data.gametype == GameType.pass)
+        {
+            Debug.Log("Game Over");
+        }
+
+        if(!ReachGoal) yield return new WaitForSeconds(0f);
 
         carController.moveStop = true;
         fuelWarning.SetActive(false);

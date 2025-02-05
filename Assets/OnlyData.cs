@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using TMPro;
 
 public class OnlyData : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class OnlyData : MonoBehaviour
 
     public static OnlyData Data { get; private set; }
     public bool AlreadyPlayedGames;
+    public string Playername;
+
     void Awake()
     {
         if (Data == null)
