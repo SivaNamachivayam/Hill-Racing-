@@ -22,6 +22,8 @@ public class RoomCreationManager : MonoBehaviourPunCallbacks
 
     public static RoomCreationManager data;
     public GameObject Loadingpanel;
+    public GameObject RoomWaitPanel;
+    public TextMeshProUGUI RoomWaitText;
     public void Awake()
     {
         data = this;
@@ -66,8 +68,9 @@ public class RoomCreationManager : MonoBehaviourPunCallbacks
     // Join a random room
     public void JoinRoom()
     {
+        PhotonNetwork.NickName = PlayerName.text;
+        RoomWaitPanel.SetActive(true);
         OnlyData.Data.Playername = PlayerName.text;
-        PhotonNetwork.NickName = OnlyData.Data.Playername;
         PhotonNetwork.JoinRandomRoom();
         BotBtn.interactable = false;
         ConnectBtn.interactable = false;
@@ -87,24 +90,24 @@ public class RoomCreationManager : MonoBehaviourPunCallbacks
     // Called when a player joins the room
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
+        RoomWaitText.text = $"Player {newPlayer.NickName} joined. Players in room: {PhotonNetwork.CurrentRoom.PlayerCount}/{PhotonNetwork.CurrentRoom.MaxPlayers}";
         Debug.Log($"Player {newPlayer.NickName} joined. Players in room: {PhotonNetwork.CurrentRoom.PlayerCount}/{PhotonNetwork.CurrentRoom.MaxPlayers}");
-
         // Check if all players are in the room
         if (PhotonNetwork.CurrentRoom.PlayerCount == PhotonNetwork.CurrentRoom.MaxPlayers)
         {
             LoadGameScene();
         }
-
     }
 
     // Called when the local player successfully joins a room
     public override void OnJoinedRoom()
     {
+        RoomWaitText.text = $"Joined room: {PhotonNetwork.CurrentRoom.Name}. Players in room: {PhotonNetwork.CurrentRoom.PlayerCount}/{PhotonNetwork.CurrentRoom.MaxPlayers}";
         Debug.Log($"Joined room: {PhotonNetwork.CurrentRoom.Name}. Players in room: {PhotonNetwork.CurrentRoom.PlayerCount}/{PhotonNetwork.CurrentRoom.MaxPlayers}");
-
         // Check if the room is full
         if (PhotonNetwork.CurrentRoom.PlayerCount == PhotonNetwork.CurrentRoom.MaxPlayers)
         {
+            RoomWaitPanel.SetActive(false);
             LoadGameScene();
         }
     }
@@ -136,5 +139,14 @@ public class RoomCreationManager : MonoBehaviourPunCallbacks
         CloseBtn.gameObject.SetActive(false);
         ConnectBtn.interactable = false;
         PhotonNetwork.ConnectUsingSettings();
+        RoomWaitPanel.SetActive(false);
+
+    }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        //Debug.Log("Remaining Players: " + PhotonNetwork.CurrentRoom.PlayerCount);
+        RoomWaitText.text = $"Player Left: {otherPlayer.NickName} . Players in room: {PhotonNetwork.CurrentRoom.PlayerCount}/{PhotonNetwork.CurrentRoom.MaxPlayers}";
+        Debug.Log($"Player Left: {otherPlayer.NickName} (ID: {otherPlayer.ActorNumber})");
     }
 }
