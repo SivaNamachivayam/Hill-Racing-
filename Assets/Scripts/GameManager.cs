@@ -31,6 +31,8 @@ public class GameManager : Singleton<GameManager> {
     public bool BrakeBtnPressed { get; set; }
     public bool isDie { get; set; }
     public bool ReachGoal { get; set; }
+    public bool NotReachGoal;
+
 
     public string MyDisdanceValue;
     private void Start() {

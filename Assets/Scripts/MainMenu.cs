@@ -33,13 +33,16 @@ public class MainMenu : MonoBehaviourPun {
 
     public void OnEnable()
     {
-
-        if (OnlyData.Data.AlreadyPlayedGames)
+        if (OnlyData.Data)
         {
-            LoadingPanel.SetActive(false);
-            PhotonNetwork.ConnectUsingSettings();
-            PhotonNetwork.GameVersion = "1.0";
+            if (OnlyData.Data.AlreadyPlayedGames)
+            {
+                LoadingPanel.SetActive(false);
+                PhotonNetwork.ConnectUsingSettings();
+                PhotonNetwork.GameVersion = "1.0";
+            }
         }
+        
     }
     private void Start() {
         //저장된 데이터가 없을 경우 초기화

@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
+using Photon.Pun;
 
-public class CollidingObject : MonoBehaviour {
+public class CollidingObject : MonoBehaviourPun {
 
     [SerializeField]
     private int price;
-
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.gameObject.CompareTag("Vehicle")) {
             //연료 획득 시
@@ -16,6 +16,7 @@ public class CollidingObject : MonoBehaviour {
             //목표 도착지에 도달하여 게임 성공
             else if(gameObject.name.Contains("Goal")) {  
                 GameManager.Instance.ReachGoal = true;
+                PhotonRPC.Data.MasterSendMessage();
                 GameManager.Instance.StartGameOver();
             }
 
@@ -25,5 +26,12 @@ public class CollidingObject : MonoBehaviour {
                 gameObject.SetActive(false);
             }
         }
+    }
+
+    [PunRPC]
+    public void OtherGameOver()
+    {
+        Debug.Log("CheckClient -CALLING");
+        GameManager.Instance.StartGameOver();
     }
 }

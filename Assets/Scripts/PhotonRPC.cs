@@ -9,14 +9,17 @@ using Photon.Realtime;
 public class PhotonRPC : MonoBehaviourPunCallbacks
 {
     public PhotonView ThisPV;
-
+    public static PhotonRPC Data;
     public GameObject textPrefab;  // Assign a TextMeshProUGUI prefab in the Inspector
     public Transform parentPanel; // Assign the UI panel where text fields will be added
     public GameObject newText;
 
     Dictionary<string, string> playerDistances = new Dictionary<string, string>();
     Dictionary<string, TextMeshProUGUI> playerTextObjects = new Dictionary<string, TextMeshProUGUI>();
-
+    public void Awake()
+    {
+        Data = this;
+    }
     void Update()
     {
         //Debug.Log("ROom" + PhotonNetwork.CurrentRoom.PlayerCount);
@@ -75,13 +78,34 @@ public class PhotonRPC : MonoBehaviourPunCallbacks
 
         Debug.Log(playerName + " left the room. UI updated.");
 
-
-        if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
+        if(PhotonNetwork.CurrentRoom.PlayerCount == 1)
         {
-            Debug.Log("m / <color=yellow> ++++ YOU WIN ++++ </color>");
-            PhotonNetwork.LoadLevel(0);
+            if (GameManager.Instance.NotReachGoal)
+            {
+                Debug.Log("m / <color=yellow> ++++ YOU LOSE ++++ </color>");
+                GameManager.Instance.StartGameOver();
+            }
+            else if(!GameManager.Instance.NotReachGoal)
+            {
+                Debug.Log("m / <color=yellow> ++++ YOU WIN ++++ </color>");
+                GameManager.Instance.StartGameOver();
+            }
         }
+        
     }
 
+    //++++++++++++++++++++++
+    public void MasterSendMessage()
+    {
+        ThisPV.RPC("ClientCall", RpcTarget.Others,true);
+    }
+
+    [PunRPC]
+    private void ClientCall(bool Value)
+    {
+        Debug.Log("<color=yellow>GAME OVER - YOU LOSE </color>");
+        GameManager.Instance.NotReachGoal = Value;
+        GameManager.Instance.StartGameOver();
+    }
 }
 
