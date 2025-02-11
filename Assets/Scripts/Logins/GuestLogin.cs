@@ -17,6 +17,7 @@ public class GuestLogin : MonoBehaviour
     public GameObject profileImage;
     public GameObject guestPanel;
     public TextMeshProUGUI statusText; // UI Text element to display login status
+    public TMP_InputField _userName;
 
     // Serializable class for saving guest data as JSON
     [System.Serializable]
@@ -76,13 +77,13 @@ public class GuestLogin : MonoBehaviour
             // Generate a new guest ID, game progress, and settings
             GuestData guestData = new GuestData
             {
-                guestId = System.Guid.NewGuid().ToString(),
+                guestId = _userName + System.Guid.NewGuid().ToString(),
                 gameProgress = 0, // Initial progress
                 settings = "DefaultSettings" // Default settings
             };
 
             SaveGuestData(guestData); // Save the new guest data to the JSON file
-            statusText.text = "Guest. ID: " + guestData.guestId;
+            statusText.text =  guestData.guestId;
             Debug.Log("Guest ID created: " + guestData.guestId);
         }
         else
