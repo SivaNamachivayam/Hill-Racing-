@@ -23,6 +23,11 @@ public class GameManager : Singleton<GameManager> {
 
     private int totalMoney, moneyEarned = 0;
 
+    [SerializeField] private Slider progressBar; // Add this
+
+    private float startDistance;
+    private float endDistance = 1427f; // Set your level's max distance
+
     public ObjectManager objectManager;
     public CameraController cameraController;
     private CarController carController;
@@ -41,6 +46,9 @@ public class GameManager : Singleton<GameManager> {
         ReachGoal = false;
         fadeIn.GetComponent<Animator>().SetTrigger("FadeIn");  //페이드 인 애니메이션 실행
         Initialize();
+        startDistance = carController.StartPos.x; // Capture the starting position
+        progressBar.minValue = 0;
+        progressBar.maxValue = endDistance;
     }
 
     private void Update() {
@@ -51,8 +59,12 @@ public class GameManager : Singleton<GameManager> {
         //움직인 거리 계산하여 계속해서 text 갱신
         if (!gameOverUI.activeSelf)
         {
-            distanceText.text = "You :" + (int)(carController.transform.position.x - carController.StartPos.x) + "m / <color=yellow>1427m</color>";
-            MyDisdanceValue= (int)(carController.transform.position.x - carController.StartPos.x) + "m / <color=yellow>1427m</color>";
+            float currentDistance = carController.transform.position.x - startDistance;
+            progressBar.value = currentDistance; // Update progress bar
+
+            // Optional: Display percentage
+            float progressPercentage = (currentDistance / endDistance) * 100f;
+            distanceText.text = $"{progressPercentage:F1}%"; // Format to 1 decimal place
         }
 
         //게임오버/성공 후 한번 더 터치하면 게임 재시작

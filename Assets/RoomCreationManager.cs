@@ -16,7 +16,7 @@ public class RoomCreationManager : MonoBehaviourPunCallbacks
     public Button ConnectBtn;
     public Button CloseBtn;
     public Button BotBtn;
-    public TMP_InputField PlayerName;
+    public TextMeshProUGUI PlayerName;
     public TextMeshProUGUI SearchingText;
     public Text MultiText;
 

@@ -24,7 +24,6 @@ public class GoogleLoginManager : MonoBehaviour
    // public TextMeshProUGUI id;
     public Image Google_userDp;
     public GameObject panel;
-    public GameObject GuestBtn;
    // public GameObject openpanel;
 
     private const string GoogleUserNameKey = "GoogleUserNameKey";
@@ -138,7 +137,6 @@ public class GoogleLoginManager : MonoBehaviour
         yield return new WaitForEndOfFrame();  // Wait until the frame is fully rendered
         if (panel != null) panel.SetActive(false);
         //if (openpanel != null) openpanel.SetActive(true);
-        if (GuestBtn != null) GuestBtn.SetActive(false);
         defaultAvatar.enabled = true;
         defaultAvatar.gameObject.SetActive(true);
 
@@ -157,7 +155,6 @@ public class GoogleLoginManager : MonoBehaviour
         yield return new WaitForEndOfFrame();  // Wait until the frame is fully rendered
         if (panel != null) panel.SetActive(true);
        // if (openpanel != null) openpanel.SetActive(false);
-        if (GuestBtn != null) GuestBtn.SetActive(true);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

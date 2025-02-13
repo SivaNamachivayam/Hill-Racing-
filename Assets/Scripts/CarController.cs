@@ -19,7 +19,7 @@ public class CarController : MonoBehaviour {
         //PC : movement = Input.GetAxis("Horizontal");
         //엔진 버튼 누를 시
         if(GameManager.Instance.GasBtnPressed) {
-            movement += 0.009f;
+            movement += 0.011f;
             if(movement > 1f)
                 movement = 1f;
         }

@@ -18,7 +18,6 @@ public class FaceBookLogin : MonoBehaviour
     //public GameObject openpanel;
     public bool FBLoginbool = false;
     public static FaceBookLogin instance;
-    public GameObject GuestBtn;
 
     private const string FBUserNameKey = "FBUserName";
     private const string FBUserIdKey = "FBUserId";
@@ -62,7 +61,6 @@ public class FaceBookLogin : MonoBehaviour
             defaultAvatar.gameObject.SetActive(false);
             // openpanel.gameObject.SetActive(true);
             FB_userDp.gameObject.SetActive(true);
-            GuestBtn.gameObject.SetActive(false);
         }
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -156,7 +154,6 @@ public class FaceBookLogin : MonoBehaviour
             PlayerPrefs.SetInt("FBLoginbool", FBLoginbool ? 1 : 0);
             PlayerPrefs.Save();
             StartCoroutine(ShowPanels(true));
-            GuestBtn.SetActive(false);
         }
     }
 

@@ -16,7 +16,7 @@ public class ImpactBehavior : StateMachineBehaviour {
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-        SceneManager.LoadScene(1);
+        //SceneManager.LoadScene(1);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

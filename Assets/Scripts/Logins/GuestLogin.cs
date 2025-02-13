@@ -15,7 +15,6 @@ public class GuestLogin : MonoBehaviour
     //public GameObject hide;
     public GameObject guestNameImage;
     public GameObject profileImage;
-    public GameObject guestPanel;
     public TextMeshProUGUI statusText; // UI Text element to display login status
     public TMP_InputField _userName;
 
@@ -62,9 +61,8 @@ public class GuestLogin : MonoBehaviour
             Debug.Log("Elan Guestlogin manager Start 1111 ==>" + guestlogin);
             LoadGuestData();
             LoginPanel.SetActive(false);
-            guestPanel.SetActive(true);
             guestNameImage.gameObject.SetActive(true);
-            profileImage.gameObject.SetActive(false);
+            //profileImage.gameObject.SetActive(false);
             //hide.gameObject.SetActive(false);
         }
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -77,7 +75,7 @@ public class GuestLogin : MonoBehaviour
             // Generate a new guest ID, game progress, and settings
             GuestData guestData = new GuestData
             {
-                guestId = _userName + System.Guid.NewGuid().ToString(),
+                guestId = _userName.text,
                 gameProgress = 0, // Initial progress
                 settings = "DefaultSettings" // Default settings
             };
@@ -89,14 +87,14 @@ public class GuestLogin : MonoBehaviour
         else
         {
             GuestData guestData = LoadGuestDataFromFile();
-            statusText.text = "Already logged in as Guest. ID: " + guestData.guestId;
+            statusText.text =  guestData.guestId;
             Debug.Log("Guest already logged in with ID: " + guestData.guestId);
         }
 
         LoginPanel.SetActive(false);
-        guestPanel.SetActive(true);
         guestNameImage.gameObject.SetActive(true);
-        //hide.gameObject.SetActive(true);
+        profileImage.gameObject.SetActive(false);
+        //hide.gameObject.SetActive(false);
         guestlogin = true;
 
         PlayerPrefs.SetInt("guestloginbool", guestlogin ? 1 : 0);
@@ -122,7 +120,6 @@ public class GuestLogin : MonoBehaviour
         if (LoginPanel != null) LoginPanel.gameObject.SetActive(true);
         //if (hide != null) hide.gameObject.SetActive(false);
         if (guestNameImage != null) guestNameImage.gameObject.SetActive(false);
-        guestPanel.SetActive(false);
         profileImage.gameObject.SetActive(true);
         // Clear guest data by deleting the JSON file
         if (File.Exists(localDataPath))
@@ -193,6 +190,7 @@ public class GuestLogin : MonoBehaviour
     {
         if (File.Exists(localDataPath))
         {
+            profileImage.gameObject.SetActive(false);
             string jsonData = File.ReadAllText(localDataPath);
             return JsonUtility.FromJson<GuestData>(jsonData); // Deserialize JSON to GuestData object
         }
@@ -209,7 +207,7 @@ public class GuestLogin : MonoBehaviour
         if (File.Exists(localDataPath))
         {
             GuestData guestData = LoadGuestDataFromFile();
-            statusText.text = "Logged in as Guest. ID: " + guestData.guestId;
+            statusText.text = " " + guestData.guestId;
             Debug.Log("Loaded guest data: " + guestData.guestId);
         }
         else
