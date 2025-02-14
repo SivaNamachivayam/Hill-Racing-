@@ -87,11 +87,14 @@ public class GameManager : Singleton<GameManager> {
             Camera.main.backgroundColor = new Color(0.5803922f, 0.8470589f, 0.937255f, 0);
         }
         else if(stageIndex.Equals(1)) {
-            objName = "Mars";
+            objName = "Stage2";
             Camera.main.backgroundColor = new Color(0.8627452f, 0.6666667f, 0.6666667f, 0);
         }
         else if(stageIndex.Equals(2))
-            objName = "Cave";
+            objName = "Stage3";
+        else if (stageIndex.Equals(3))
+            objName = "Stage4";
+
         objectManager.GetObject(objName);
         //선택한 차량 불러오기/오브젝트 생성
 

@@ -295,7 +295,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &19833045
 RectTransform:
   m_ObjectHideFlags: 0
@@ -317,7 +317,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -61}
-  m_SizeDelta: {x: 0, y: 600}
+  m_SizeDelta: {x: 2080.16, y: 600}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &19833046
 MonoBehaviour:
@@ -540,7 +540,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Sportscar
+  m_Text: Lamborghini
 --- !u!222 &37732087
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2197,7 +2197,7 @@ GameObject:
   - component: {fileID: 209504046}
   - component: {fileID: 209504049}
   m_Layer: 5
-  m_Name: Tank
+  m_Name: Jeep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2259,7 +2259,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2243dcbe6fecf134993ebaef0e55a48c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eb808475681e745b5b9e1335fae564b1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2990,6 +2990,7 @@ GameObject:
   - component: {fileID: 317852187}
   - component: {fileID: 317852186}
   - component: {fileID: 317852185}
+  - component: {fileID: 317852188}
   m_Layer: 5
   m_Name: Moon
   m_TagString: Untagged
@@ -3053,7 +3054,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 347d8dd63053ced4aab174457307c637, type: 3}
+  m_Sprite: {fileID: 21300000, guid: df33a06df86944553b6bcb23839e4cb7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3071,6 +3072,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 317852183}
   m_CullTransparentMesh: 0
+--- !u!114 &317852188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317852183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 317852186}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 229495808}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &324481752
 GameObject:
   m_ObjectHideFlags: 0
@@ -4135,7 +4192,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &476075541
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4687,7 +4744,7 @@ MonoBehaviour:
   ConnectBtn: {fileID: 1608868227}
   CloseBtn: {fileID: 788214307}
   BotBtn: {fileID: 282984693}
-  PlayerName: {fileID: 0}
+  PlayerName: {fileID: 2066186168}
   SearchingText: {fileID: 471600713}
   MultiText: {fileID: 233178300}
   Loadingpanel: {fileID: 1867869905}
@@ -5305,7 +5362,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Motorcycle
+  m_Text: Bike
 --- !u!222 &621744281
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5748,6 +5805,7 @@ GameObject:
   - component: {fileID: 654373728}
   - component: {fileID: 654373727}
   - component: {fileID: 654373726}
+  - component: {fileID: 654373729}
   m_Layer: 5
   m_Name: Cave
   m_TagString: Untagged
@@ -5811,7 +5869,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6127cac8218041645989a7bfe2b312b5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c919d8e9e0e0947f29e31d6c0aaeea9e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5829,6 +5887,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654373724}
   m_CullTransparentMesh: 0
+--- !u!114 &654373729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654373724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 654373727}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 229495808}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &676060434
 GameObject:
   m_ObjectHideFlags: 0
@@ -6742,7 +6856,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 93f17a67247dca7449c3eca4619ca149, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8a9a00e5c6afe4089b4e06c0009d3e9b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7194,7 +7308,7 @@ GameObject:
   - component: {fileID: 931229476}
   - component: {fileID: 931229475}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Jeep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8749,7 +8863,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f4c0c18e3260c514b8bbef746bad0595, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 11802e4350a0e4d66927cd574afba41e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10005,7 +10119,7 @@ GameObject:
   - component: {fileID: 1310065710}
   - component: {fileID: 1310065709}
   m_Layer: 5
-  m_Name: HillClimber
+  m_Name: SuperCar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10066,7 +10180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9d56546b6a0c4564d9dd4d73d50d147d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a29a087bff9114c2c8999b428f5a1225, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12302,7 +12416,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Jeeb
+  m_Text: SuperCar
 --- !u!222 &1620295803
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12476,7 +12590,7 @@ GameObject:
   - component: {fileID: 1649290465}
   - component: {fileID: 1649290468}
   m_Layer: 5
-  m_Name: SportsCar
+  m_Name: Lamborghini
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12538,7 +12652,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 06025a0f66ba25b42a23a1c13b0bf2f0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 57ec81532c4cb45c98cd9dfa3618ef77, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13509,7 +13623,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1867869906
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14821,7 +14935,7 @@ GameObject:
   - component: {fileID: 2028799936}
   - component: {fileID: 2028799939}
   m_Layer: 5
-  m_Name: Motorcycle
+  m_Name: Bike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14883,7 +14997,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c3830219eb91d504a8ed681d975b8370, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f20e653dd38514bb290f1a455c99428a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -278,7 +278,7 @@ Transform:
   m_GameObject: {fileID: 4536955731321792215}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.081, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -325,7 +325,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -3
-  m_Sprite: {fileID: 21300000, guid: c687272108e7f4433a9d939fab1e9d11, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 88dd0c1db50e3134099657c2b863fa3e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -365,7 +365,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -380,33 +380,47 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.5, y: -0.57}
-      - {x: -0.48999998, y: -0.59999996}
-      - {x: 0.35999998, y: -0.62}
-      - {x: 0.42, y: -0.42999998}
-      - {x: 0.82, y: -0.48999998}
-      - {x: 0.82, y: -0.59}
-      - {x: 0.87, y: -0.62}
-      - {x: 1.25, y: -0.62}
-      - {x: 1.28, y: -0.58}
-      - {x: 1.28, y: -0.28}
-      - {x: 1.18, y: -0.13}
-      - {x: 0.63, y: 0.049999997}
-      - {x: 0.47, y: 0.12}
-      - {x: 0.41, y: 0.12}
-      - {x: 0.39999998, y: 0.11}
-      - {x: 0.39999998, y: 0.02}
-      - {x: -0.71, y: 0.01}
-      - {x: -0.71, y: 0.03}
-      - {x: -1.03, y: 0.07}
-      - {x: -1.17, y: -0.03}
-      - {x: -1.24, y: -0.12}
-      - {x: -1.28, y: -0.34}
-      - {x: -1.28, y: -0.62}
-      - {x: -0.98999995, y: -0.62}
-      - {x: -0.95, y: -0.58}
-      - {x: -0.9, y: -0.39}
-      - {x: -0.53999996, y: -0.39999998}
+    - - {x: 1.09, y: -0.59}
+      - {x: 1.28, y: -0.47}
+      - {x: 1.28, y: 0.03}
+      - {x: 1.24, y: 0.04}
+      - {x: 1.2099999, y: 0.04}
+      - {x: 1.11, y: 0.049999997}
+      - {x: 0.68, y: 0.19}
+      - {x: 0.47, y: 0.44}
+      - {x: 0.39, y: 0.44}
+      - {x: 0.32, y: 0.35999998}
+      - {x: 0.38, y: 0.25}
+      - {x: 0.31, y: 0.14}
+      - {x: -0.22999999, y: 0.14999999}
+      - {x: -0.22999999, y: 0.22}
+      - {x: -0.42, y: 0.32}
+      - {x: -0.47, y: 0.24}
+      - {x: -1.1, y: 0.22999999}
+      - {x: -1.13, y: 0.19999999}
+      - {x: -1.15, y: 0.16}
+      - {x: -1.16, y: 0.11}
+      - {x: -1.17, y: 0.03}
+      - {x: -1.17, y: -0.32}
+      - {x: -1.24, y: -0.29}
+      - {x: -1.26, y: -0.34}
+      - {x: -1.26, y: -0.45999998}
+      - {x: -1.23, y: -0.48}
+      - {x: -1.0699999, y: -0.58}
+      - {x: -1, y: -0.32999998}
+      - {x: -0.75, y: -0.22999999}
+      - {x: -0.56, y: -0.41}
+      - {x: -0.57, y: -0.56}
+      - {x: -0.53, y: -0.59}
+      - {x: 0.53999996, y: -0.59}
+      - {x: 0.56, y: -0.57}
+      - {x: 0.65999997, y: -0.29}
+      - {x: 0.96, y: -0.29999998}
+    - - {x: 0.47, y: 0.17999999}
+      - {x: 0.45999998, y: 0.19}
+      - {x: 0.45999998, y: 0.17}
+      - {x: 0.48999998, y: 0.14999999}
+      - {x: 0.45, y: 0.14999999}
   m_UseDelaunayMesh: 0
 --- !u!1 &4536955731550353525
 GameObject:
@@ -486,7 +500,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -5
   m_Sprite: {fileID: 21300000, guid: 234ab0394a4d34d4db314d31aa614023, type: 3}
-  m_Color: {r: 0.88354087, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -612,8 +626,8 @@ Transform:
   m_GameObject: {fileID: 4536955731919613366}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.616, y: -0.5130001, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
+  m_LocalPosition: {x: 0.815, y: -0.594, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4536955732796367315}
@@ -748,7 +762,7 @@ WheelJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.616, y: -0.688}
+  m_ConnectedAnchor: {x: 0.81500006, y: -0.594}
   m_Suspension:
     m_DampingRatio: 0.7
     m_Frequency: 25
@@ -786,8 +800,8 @@ Transform:
   m_GameObject: {fileID: 4536955732052728188}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.728, y: -0.53200006, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
+  m_LocalPosition: {x: -0.805, y: -0.573, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4536955732796367315}
@@ -922,7 +936,7 @@ WheelJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0.728, y: -0.707}
+  m_ConnectedAnchor: {x: -0.8049998, y: -0.573}
   m_Suspension:
     m_DampingRatio: 0.7
     m_Frequency: 25

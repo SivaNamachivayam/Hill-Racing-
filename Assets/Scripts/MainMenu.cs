@@ -13,7 +13,6 @@ public class MainMenu : MonoBehaviourPun {
 
     public Text moneyText, cantBuyText;
 
-    private AudioSource audio;
 
     public float scroll_pos = 0, distance;
     public float[] pos;
@@ -46,9 +45,14 @@ public class MainMenu : MonoBehaviourPun {
         if(!PlayerPrefs.HasKey("Stage")) {
             PlayerPrefs.SetInt("Stage", 0);
             PlayerPrefs.SetInt("Vehicle", 0);
-            PlayerPrefs.SetInt("Stage_Mars", 0);
-            PlayerPrefs.SetInt("Stage_Cave", 0);
+
+            PlayerPrefs.SetInt("Stage_0", 0);
+            PlayerPrefs.SetInt("Stage_1", 0);
+            PlayerPrefs.SetInt("Stage_2", 0);
+            PlayerPrefs.SetInt("Stage_3", 0);
+
             PlayerPrefs.SetInt("Bike", 0);
+            PlayerPrefs.SetInt("SuperCar1", 0);
             PlayerPrefs.SetInt("SuperCar2", 0);
             PlayerPrefs.SetInt("SuperCar3", 0);
             PlayerPrefs.SetInt("Money", 500000);
@@ -60,10 +64,13 @@ public class MainMenu : MonoBehaviourPun {
 
     
     private void LoadData() {
-        Stages[1].transform.GetChild(1).gameObject.SetActive(PlayerPrefs.GetInt("Stage_Mars").Equals(0));
-        Stages[1].GetComponent<Button>().enabled = PlayerPrefs.GetInt("Stage_Mars").Equals(0);
-        Stages[2].transform.GetChild(1).gameObject.SetActive(true);
-        Stages[3].transform.GetChild(1).gameObject.SetActive(true);
+
+        Stages[1].transform.GetChild(1).gameObject.SetActive(PlayerPrefs.GetInt("Stage_1").Equals(0));
+        Stages[1].GetComponent<Button>().enabled = PlayerPrefs.GetInt("Stage_1").Equals(0);
+        Stages[2].transform.GetChild(1).gameObject.SetActive(PlayerPrefs.GetInt("Stage_2").Equals(0));
+        Stages[2].GetComponent<Button>().enabled = PlayerPrefs.GetInt("Stage_2").Equals(0);
+        Stages[3].transform.GetChild(1).gameObject.SetActive(PlayerPrefs.GetInt("Stage_3").Equals(0));
+        Stages[3].GetComponent<Button>().enabled = PlayerPrefs.GetInt("Stage_3").Equals(0);
 
 
         Vehicles[1].transform.GetChild(1).gameObject.SetActive(PlayerPrefs.GetInt("Bike").Equals(0));
@@ -72,8 +79,6 @@ public class MainMenu : MonoBehaviourPun {
         Vehicles[2].GetComponent<Button>().enabled = PlayerPrefs.GetInt("SuperCar2").Equals(0);
         Vehicles[3].transform.GetChild(1).gameObject.SetActive(PlayerPrefs.GetInt("SuperCar3").Equals(0));
         Vehicles[3].GetComponent<Button>().enabled = PlayerPrefs.GetInt("SuperCar3").Equals(0);
-        //Vehicles[2].transform.GetChild(1).gameObject.SetActive(true);
-        //Vehicles[3].transform.GetChild(1).gameObject.SetActive(true);
 
         moneyText.text = PlayerPrefs.GetInt("Money").ToString();
     }
@@ -142,28 +147,37 @@ public class MainMenu : MonoBehaviourPun {
 
     public void Purchase() {
         int price, moneyOwned = 500000;
-        if(selectedMenuIndex.Equals(0)) { 
+        if(Contents[0].activeSelf) {
+            Debug.Log("STAGE SELECT");
             price = int.Parse(Stages[selectedIndex].transform.GetChild(1).gameObject.transform.GetChild(1).GetComponent<Text>().text);
             if(moneyOwned - price < 0) { cantBuyText.GetComponent<Animator>().SetTrigger("warning"); return; }
-            if(selectedIndex.Equals(1)) PlayerPrefs.SetInt("Stage_Mars", 1);
-            
+            //if(selectedIndex.Equals(1)) PlayerPrefs.SetInt("Stage_Mars", 1);
+
+            switch (selectedIndex)
+            {
+                case 0:
+                    PlayerPrefs.SetInt("Stage_0", 0);
+                    break;
+                case 1:
+                    PlayerPrefs.SetInt("Stage_1", 1);
+                    break;
+                case 2:
+                    PlayerPrefs.SetInt("Stage_2", 2);
+                    break;
+                case 3:
+                    PlayerPrefs.SetInt("Stage_3", 3);
+                    break;
+                default:
+                    break;
+            }
+            PlayerPrefs.SetInt("Money", moneyOwned - price);
+            LoadData();
         }
-        else {  
+        else if(Contents[1].activeSelf){
+            Debug.Log("VACHILE SELECT");
             price = int.Parse(Vehicles[selectedIndex].transform.GetChild(1).gameObject.transform.GetChild(1).GetComponent<Text>().text);
             if(moneyOwned - price < 0) { cantBuyText.GetComponent<Animator>().SetTrigger("warning"); return; }
 
-            //if (selectedIndex == 1)
-            //{
-            //    PlayerPrefs.SetInt("Bike", 1);
-            //}
-            //if (selectedIndex == 2)
-            //{
-            //    PlayerPrefs.SetInt("Tank", 2);
-            //}
-            //if (selectedIndex == 3)
-            //{
-            //    PlayerPrefs.SetInt("SuperCar",3);
-            //}
             switch (selectedIndex)
             {
                 case 0:
@@ -181,10 +195,10 @@ public class MainMenu : MonoBehaviourPun {
                 default:
                     break;
             }
+            PlayerPrefs.SetInt("Money", moneyOwned - price);
+            LoadData();
         }
-        PlayerPrefs.SetInt("Money", moneyOwned - price);
-        //audio.Play();
-        LoadData();
+       
     }
 
     
