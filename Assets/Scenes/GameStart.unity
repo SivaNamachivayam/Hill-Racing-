@@ -2818,8 +2818,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectPrefabs:
-  - {fileID: 4536955732796367340, guid: 13e58b9412263b845a560bb02ec7871a, type: 3}
+  - {fileID: 4536955732796367340, guid: 749fc4547be5b47b89e94617e686aeaf, type: 3}
   - {fileID: 4103106965185028262, guid: 1ee9e917ac4e35042907dd94e63170b8, type: 3}
+  - {fileID: 4536955732796367340, guid: d512896228b4a4da9bcd0344b856135d, type: 3}
+  - {fileID: 4536955732796367340, guid: 60574f37c3df74c3ea436800c917ff07, type: 3}
   - {fileID: 6014637842117244164, guid: ba9d644e04497b348b55d6cfec7fb7ae, type: 3}
   - {fileID: 200751262156449440, guid: a430a2ca8b0d1d44880205301218d954, type: 3}
 --- !u!4 &948473167

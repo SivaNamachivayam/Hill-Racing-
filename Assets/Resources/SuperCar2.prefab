@@ -748,7 +748,7 @@ WheelJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.616, y: -0.688}
+  m_ConnectedAnchor: {x: 0.616, y: -0.5130001}
   m_Suspension:
     m_DampingRatio: 0.7
     m_Frequency: 25
@@ -922,7 +922,7 @@ WheelJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0.728, y: -0.707}
+  m_ConnectedAnchor: {x: -0.728, y: -0.53200006}
   m_Suspension:
     m_DampingRatio: 0.7
     m_Frequency: 25
@@ -1020,7 +1020,7 @@ GameObject:
   - component: {fileID: 4536955732796367313}
   - component: {fileID: 4536955732796367314}
   m_Layer: 0
-  m_Name: HillClimber
+  m_Name: SuperCar2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

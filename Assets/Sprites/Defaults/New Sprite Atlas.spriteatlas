@@ -65,6 +65,7 @@ SpriteAtlas:
     - 2a6caa112ca55c44ea95c1a271a3d346: 21300000
     - 17405b1121dc1ed42a2a3db3902b24a4: 21300000
     - 755a1d11929bc0749ac9f25702146160: 21300000
+    - c687272108e7f4433a9d939fab1e9d11: 21300000
     - f946903174f1bab449fd6f28252792c5: 21300000
     - 0f0558516be123047ab9f30edb15f6f1: 21300000
     - 426315811c5a45346979b368178d4fab: 21300000
@@ -113,6 +114,7 @@ SpriteAtlas:
     - 850fe09373be79844a7d487deea2f75b: 21300000
     - 0edc56b33c7247d499900fa53397b404: 21300000
     - 5e2d81c33f8e8564ba9621476bfcd45f: 21300000
+    - 8be205c3a3e3e4359ace526cdfc56ab3: 21300000
     - 36f109c3e488a384888b1dac73aea8ea: 21300000
     - 08b4191470ea13946bc3e7f19def9952: 21300000
     - 52f39f144bbafcc4987de62da98b299c: 21300000
@@ -180,6 +182,7 @@ SpriteAtlas:
     - b302f7c7e6a444f4fb41136fcd861438: 21300000
     - 6797cbc728564704b9fcfe723ce05fd4: 21300000
     - 62c50af7bafbfee448245d695cdaf1b7: 21300000
+    - 960b631899e4545549c13900a7d7883b: 21300000
     - aa804028c817ac6449c803b3304d1f42: 21300000
     - 12317128844a21c4195579230d689c1a: 21300000
     - b469bd485268fb5429862932f3f15b28: 21300000
@@ -290,6 +293,7 @@ SpriteAtlas:
     - 81dc327eedd7b134bbce495a380eb62a: 21300000
     - 8730dc7e09372b945b2c1c136d1c8577: 21300000
     - f4c0c18e3260c514b8bbef746bad0595: 21300000
+    - 6649df8e9705f49cfa45421aa8eb1d44: 21300000
     - dc8c899edaa5cbb42b24a69c3b97f8e8: 21300000
     - 1a7497ae45a1f6749a484029f0d31df1: 21300000
     - a2676eae8a66ff4499b50dbb3fedf0cb: 21300000
@@ -336,6 +340,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 2a6caa112ca55c44ea95c1a271a3d346, type: 3}
   - {fileID: 21300000, guid: 17405b1121dc1ed42a2a3db3902b24a4, type: 3}
   - {fileID: 21300000, guid: 755a1d11929bc0749ac9f25702146160, type: 3}
+  - {fileID: 21300000, guid: c687272108e7f4433a9d939fab1e9d11, type: 3}
   - {fileID: 21300000, guid: f946903174f1bab449fd6f28252792c5, type: 3}
   - {fileID: 21300000, guid: 0f0558516be123047ab9f30edb15f6f1, type: 3}
   - {fileID: 21300000, guid: 426315811c5a45346979b368178d4fab, type: 3}
@@ -384,6 +389,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 850fe09373be79844a7d487deea2f75b, type: 3}
   - {fileID: 21300000, guid: 0edc56b33c7247d499900fa53397b404, type: 3}
   - {fileID: 21300000, guid: 5e2d81c33f8e8564ba9621476bfcd45f, type: 3}
+  - {fileID: 21300000, guid: 8be205c3a3e3e4359ace526cdfc56ab3, type: 3}
   - {fileID: 21300000, guid: 36f109c3e488a384888b1dac73aea8ea, type: 3}
   - {fileID: 21300000, guid: 08b4191470ea13946bc3e7f19def9952, type: 3}
   - {fileID: 21300000, guid: 52f39f144bbafcc4987de62da98b299c, type: 3}
@@ -451,6 +457,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: b302f7c7e6a444f4fb41136fcd861438, type: 3}
   - {fileID: 21300000, guid: 6797cbc728564704b9fcfe723ce05fd4, type: 3}
   - {fileID: 21300000, guid: 62c50af7bafbfee448245d695cdaf1b7, type: 3}
+  - {fileID: 21300000, guid: 960b631899e4545549c13900a7d7883b, type: 3}
   - {fileID: 21300000, guid: aa804028c817ac6449c803b3304d1f42, type: 3}
   - {fileID: 21300000, guid: 12317128844a21c4195579230d689c1a, type: 3}
   - {fileID: 21300000, guid: b469bd485268fb5429862932f3f15b28, type: 3}
@@ -561,6 +568,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 81dc327eedd7b134bbce495a380eb62a, type: 3}
   - {fileID: 21300000, guid: 8730dc7e09372b945b2c1c136d1c8577, type: 3}
   - {fileID: 21300000, guid: f4c0c18e3260c514b8bbef746bad0595, type: 3}
+  - {fileID: 21300000, guid: 6649df8e9705f49cfa45421aa8eb1d44, type: 3}
   - {fileID: 21300000, guid: dc8c899edaa5cbb42b24a69c3b97f8e8, type: 3}
   - {fileID: 21300000, guid: 1a7497ae45a1f6749a484029f0d31df1, type: 3}
   - {fileID: 21300000, guid: a2676eae8a66ff4499b50dbb3fedf0cb, type: 3}
@@ -606,6 +614,7 @@ SpriteAtlas:
   - distance-icon
   - terrain-ground
   - pedal-brake-normal
+  - 256-Yellow-car
   - Refpng
   - iceshard
   - rocks-mars
@@ -654,6 +663,7 @@ SpriteAtlas:
   - Button2
   - icon-previous
   - Gem
+  - Right-pink-car
   - stage-icon-countryside
   - button-sound-disabled
   - car-tank-bg
@@ -721,6 +731,7 @@ SpriteAtlas:
   - arctic-ground
   - car-icon-quadbike
   - icon-lock
+  - Right-Yellow1car-256
   - Vehicle
   - lowres-highway-surface
   - game-logo
@@ -831,6 +842,7 @@ SpriteAtlas:
   - lowres-mars-ground
   - wide-button-bg
   - lowres-stage-icon-countryside
+  - 256-Red-car
   - lowres-pedal-gas-pressed
   - car-racecar
   - Face-book-textText

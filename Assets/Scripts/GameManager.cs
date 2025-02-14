@@ -93,11 +93,29 @@ public class GameManager : Singleton<GameManager> {
         else if(stageIndex.Equals(2))
             objName = "Cave";
         objectManager.GetObject(objName);
-
         //선택한 차량 불러오기/오브젝트 생성
-        if(vehicleIndex.Equals(0)) objName = "HillClimber";
-        else if(vehicleIndex.Equals(1)) objName = "Motorcycle";
+
+        if (vehicleIndex.Equals(0))
+        {
+            objName = "SuperCar1";
+        }
+        else if (vehicleIndex.Equals(1))
+        {
+            objName = "Motorcycle";
+        }
+        else if (vehicleIndex.Equals(2))
+        {
+            objName = "SuperCar2";
+        }
+        else if (vehicleIndex.Equals(3))
+        {
+            objName = "SuperCar3";
+        }
+
+        //if (vehicleIndex.Equals(0)) objName = "HillClimber";
+        //else if(vehicleIndex.Equals(1)) objName = "Motorcycle";
         CarController vehicle = objectManager.GetObject(objName).GetComponent<CarController>();
+
         carController = vehicle;
 
         //카메라 조정

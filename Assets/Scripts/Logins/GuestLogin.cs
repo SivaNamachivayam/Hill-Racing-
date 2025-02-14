@@ -5,6 +5,7 @@ using TMPro;
 using System.IO;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class GuestLogin : MonoBehaviour
 {
@@ -46,7 +47,9 @@ public class GuestLogin : MonoBehaviour
         //}
         //GlobalManager.Instance.guestLogin = this;
         //DontDestroyOnLoad(gameObject);
-        localDataPath = Application.persistentDataPath + "/" + GuestDataFileName;
+        //localDataPath = Application.persistentDataPath + "/" + GuestDataFileName;
+        var filename = "guestData.json";
+        localDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), filename);
         LoadGuestData(); // Load data on startup if it exists
     }
 
