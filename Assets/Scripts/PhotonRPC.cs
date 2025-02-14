@@ -57,7 +57,7 @@ public class PhotonRPC : MonoBehaviourPunCallbacks
             }
 
             // Update the player's distance UI
-            playerTextObjects[playerName].text = $"{playerName}: {distance} meters";
+            playerTextObjects[playerName].text = $"{playerName}: {distance}";
         }
     }
 

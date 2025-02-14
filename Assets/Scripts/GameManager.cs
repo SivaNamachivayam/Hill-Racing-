@@ -65,6 +65,7 @@ public class GameManager : Singleton<GameManager> {
             // Optional: Display percentage
             float progressPercentage = (currentDistance / endDistance) * 100f;
             distanceText.text = $"{progressPercentage:F1}%"; // Format to 1 decimal place
+            MyDisdanceValue = $"{progressPercentage:F1}%";
         }
 
         //게임오버/성공 후 한번 더 터치하면 게임 재시작
