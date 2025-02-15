@@ -9,7 +9,7 @@ public class OnlyData : MonoBehaviour
     public GameType gametype;
     public GameObject LoadingPanel;
 
-    public static OnlyData Data { get; private set; }
+    public static OnlyData Data;
     public bool AlreadyPlayedGames;
     public string Playername;
 

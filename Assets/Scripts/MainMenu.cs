@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
+using Photon.Realtime;
 
 public class MainMenu : MonoBehaviourPun {
 
@@ -219,6 +220,8 @@ public class MainMenu : MonoBehaviourPun {
         if(selectedMenuIndex.Equals(0)) {
             if(!CheckPurchased()) return; 
             PlayerPrefs.SetInt("Stage", index);
+            RoomCreationManager.data.MapName = PlayerPrefs.GetInt("Stage").ToString();
+            RoomCreationManager.data.isLobbyJoined = false;
         }
         else {
             if(!CheckPurchased()) return; 
@@ -235,7 +238,9 @@ public class MainMenu : MonoBehaviourPun {
             }
         }
         //LoadingPanel.GetComponent<Animator>().SetTrigger("FadeOut");
-        LoadingPanel.SetActive(true);
-        SceneManager.LoadScene(1);
+        //LoadingPanel.SetActive(true);
+        //SceneManager.LoadScene(1);
+        if(OnlyData.Data.gametype==GameType.pass)
+            SceneManager.LoadScene(1);
     }
 }

@@ -4790,6 +4790,8 @@ MonoBehaviour:
   Loadingpanel: {fileID: 1867869905}
   RoomWaitPanel: {fileID: 1620790278}
   RoomWaitText: {fileID: 1026088190}
+  MapName: 
+  isLobbyJoined: 0
 --- !u!4 &550046313
 Transform:
   m_ObjectHideFlags: 0
@@ -12085,7 +12087,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 550046312}
         m_TargetAssemblyTypeName: RoomCreationManager, Assembly-CSharp
-        m_MethodName: JoinRoom
+        m_MethodName: TryJoinRandomRoom
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

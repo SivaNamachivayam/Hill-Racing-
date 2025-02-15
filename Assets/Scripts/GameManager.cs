@@ -1,9 +1,8 @@
 ﻿using System.Collections;
+using Photon.Pun;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Photon.Pun;
 
 public class GameManager : Singleton<GameManager> {
 
@@ -252,9 +251,12 @@ public class GameManager : Singleton<GameManager> {
 
         if (OnlyData.Data.gametype == GameType.Multi)
         {
-            PhotonNetwork.LeaveLobby();
+            PlayerPrefs.SetInt("Money", totalMoney);
+            RoomCreationManager.data.isLobbyJoined = false;
             PhotonNetwork.LeaveRoom();
+            PhotonNetwork.ConnectUsingSettings();
             PhotonNetwork.LoadLevel(sceneIndex);
+               
         }
         else if(OnlyData.Data.gametype == GameType.pass)
         {

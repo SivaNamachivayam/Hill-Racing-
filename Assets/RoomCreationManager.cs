@@ -24,24 +24,29 @@ public class RoomCreationManager : MonoBehaviourPunCallbacks
     public GameObject Loadingpanel;
     public GameObject RoomWaitPanel;
     public TextMeshProUGUI RoomWaitText;
+
+    public List<RoomInfo> roomList = new List<RoomInfo>();
+    public string MapName;
+    public bool isLobbyJoined;
     public void Awake()
     {
         data = this;
     }
     public void Start()
     {
+        MapName = PlayerPrefs.GetInt("Stage").ToString();
+
         if (!PhotonNetwork.IsConnected)
         {
             PhotonNetwork.ConnectUsingSettings();
             PhotonNetwork.GameVersion = "1.0";
         }
     }
-
     // Called when connected to the Photon server
     public override void OnConnectedToMaster()
     {
-       
-        PhotonNetwork.JoinLobby();
+
+        JoinLobby(MapName, LobbyType.Default);
         Debug.Log("Connected to Photon Master Server");
         //LoadingScreen.SetActive(false);
         ConnectBtn.interactable = true;
@@ -50,10 +55,23 @@ public class RoomCreationManager : MonoBehaviourPunCallbacks
 
     }
 
+
+    public void JoinLobby(string lobbyName, LobbyType lobbyType)
+    {
+        isLobbyJoined = true;
+        TypedLobby selectedLobby = new TypedLobby(lobbyName, lobbyType);
+        PhotonNetwork.JoinLobby(selectedLobby);
+    }
+
+    public override void OnJoinedLobby()
+    {
+        Debug.Log($"Joined Custom Lobby: {PhotonNetwork.CurrentLobby.Name}");
+    }
+
     // Create a room
     public void CreateRoom()
     {
-        requiredPlayers = 3; // Set this to the desired number of players for the room
+        requiredPlayers = 2; // Set this to the desired number of players for the room
         RoomOptions roomOptions = new RoomOptions
         {
             MaxPlayers = (byte)requiredPlayers
@@ -65,9 +83,24 @@ public class RoomCreationManager : MonoBehaviourPunCallbacks
 
     }
 
+    public void TryJoinRandomRoom()
+    {
+        if (isLobbyJoined)
+        {
+            JoinRoom();
+        }
+        else
+        {
+            PhotonNetwork.LeaveLobby();
+            Debug.LogWarning("Not in lobby yet. Trying again in 2 seconds...");
+            JoinLobby(MapName, LobbyType.Default);
+            Invoke(nameof(JoinRoom), 2f); // Retry after 2 seconds
+        }
+    }
     // Join a random room
     public void JoinRoom()
     {
+        ///JoinLobby(MapName, LobbyType.Default);
         PhotonNetwork.NickName = PlayerName.text;
         RoomWaitPanel.SetActive(true);
         OnlyData.Data.Playername = PlayerName.text;
@@ -112,6 +145,17 @@ public class RoomCreationManager : MonoBehaviourPunCallbacks
         }
     }
 
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
+    {
+        this.roomList = roomList;
+        Debug.Log($"Updated Room List in {PhotonNetwork.CurrentLobby.Name}:{roomList.Count}");
+
+        foreach (RoomInfo room in roomList)
+        {
+            Debug.Log($"Room: {room.Name} | Players: {room.PlayerCount}/{room.MaxPlayers}");
+        }
+    }
+
     // Called if joining a random room fails
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
@@ -125,8 +169,8 @@ public class RoomCreationManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("All players have joined. Loading the game scene...");
         Debug.Log("AllPlayerEnter");
-        //PhotonNetwork.LoadLevel(1);
-        MainMenu.Data.GameStart();
+        PhotonNetwork.LoadLevel(1);
+
         //SceneManager.LoadScene(0, LoadSceneMode.Additive);
     }
 
