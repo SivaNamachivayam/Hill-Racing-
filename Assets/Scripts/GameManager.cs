@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameManager : Singleton<GameManager> {
+public class GameManager : Singleton<GameManager>
+{
 
     [SerializeField]
     private Image fuelGauge, captureImg;
@@ -20,7 +21,7 @@ public class GameManager : Singleton<GameManager> {
     [SerializeField]
     private AudioSource[] audio;
 
-    private int totalMoney, moneyEarned = 0;
+    public int totalMoney, moneyEarned = 0;
 
     [SerializeField] private Slider progressBar; // Add this
 
@@ -39,7 +40,8 @@ public class GameManager : Singleton<GameManager> {
 
 
     public string MyDisdanceValue;
-    private void Start() {
+    private void Start()
+    {
         Time.timeScale = 1f;
         isDie = false;
         ReachGoal = false;
@@ -50,9 +52,10 @@ public class GameManager : Singleton<GameManager> {
         progressBar.maxValue = endDistance;
     }
 
-    private void Update() {
+    private void Update()
+    {
         //뒤로가기 누르면 게임 일시정지
-        if(Input.GetKeyDown(KeyCode.Escape))  
+        if (Input.GetKeyDown(KeyCode.Escape))
             GamePause();
 
         //움직인 거리 계산하여 계속해서 text 갱신
@@ -65,32 +68,72 @@ public class GameManager : Singleton<GameManager> {
             float progressPercentage = (currentDistance / endDistance) * 100f;
             distanceText.text = $"{progressPercentage:F1}%"; // Format to 1 decimal place
             MyDisdanceValue = $"{progressPercentage:F1}%";
+
+            /*// ✅ Check if player reaches the finish line
+            if (currentDistance >= endDistance)
+            {
+                GameOver();
+            }
+
+            // ✅ Check if all other players have left (for multiplayer)
+            if (AreAllOtherPlayersDisconnected())
+            {
+                GameOver();
+            }*/
         }
 
-        //게임오버/성공 후 한번 더 터치하면 게임 재시작
-        if (isDie && Input.GetMouseButtonDown(0) && gameOverUI.activeSelf) 
+        if (isDie && Input.GetMouseButtonDown(0) && gameOverUI.activeSelf)
+        {
             LoadScene(0);
+            gameStateText.text = "🏆 You Finished 1st!";
+            Debug.Log("🏆 Player Wins!");
+            playfabSendData.Data.SendLeaderboard(moneyEarned); // Send player's score
+        }
 
         //엔진/브레이크 버튼 누를 시에 사운드 재생
-        if(GasBtnPressed || BrakeBtnPressed)
+        if (GasBtnPressed || BrakeBtnPressed)
             PlaySound("engine");
     }
 
+    /*void PlayerWins()
+    {
+        //ReachGoal = true;
+        
+
+        *//*// ✅ Update PlayFab leaderboard (optional)
+        if (playfabManager == null)
+            playfabManager = FindObjectOfType<PlayFabManager>();*//*
+
+        PlayFabManager.instance.SendLeaderboard(moneyEarned); // Send player's score
+
+        // ✅ Show UI / Trigger victory animation (if needed)
+        gameOverUI.SetActive(true);
+    }*/
+
+    bool AreAllOtherPlayersDisconnected()
+    {
+        int activePlayers = FindObjectsOfType<CarController>().Length;
+        return activePlayers == 1; // If only 1 player remains, they win
+    }
+
     //게임 초기 세팅 함수
-    private void Initialize() {
+    private void Initialize()
+    {
         string objName = "";
         int stageIndex = PlayerPrefs.GetInt("Stage"), vehicleIndex = PlayerPrefs.GetInt("Vehicle");
 
         //선택한 맵 불러오기
-        if(stageIndex.Equals(0)) {
+        if (stageIndex.Equals(0))
+        {
             objName = "Country";
             Camera.main.backgroundColor = new Color(0.5803922f, 0.8470589f, 0.937255f, 0);
         }
-        else if(stageIndex.Equals(1)) {
+        else if (stageIndex.Equals(1))
+        {
             objName = "Stage2";
             Camera.main.backgroundColor = new Color(0.8627452f, 0.6666667f, 0.6666667f, 0);
         }
-        else if(stageIndex.Equals(2))
+        else if (stageIndex.Equals(2))
             objName = "Stage3";
         else if (stageIndex.Equals(3))
             objName = "Stage4";
@@ -131,32 +174,38 @@ public class GameManager : Singleton<GameManager> {
     }
 
     //연료 소비 함수
-    public void FuelConsume() {
+    public void FuelConsume()
+    {
         fuelGauge.fillAmount = carController.Fuel;  //움직일수록 연료 게이지를 줄어들게한다.
-        if(fuelGauge.fillAmount <= 0.6f) {  //연료 게이지 색깔 조정
+        if (fuelGauge.fillAmount <= 0.6f)
+        {  //연료 게이지 색깔 조정
             fuelGauge.color = new Color(1, fuelGauge.fillAmount * 0.8f * 2f, 0, 1);  //게이지가 줄어들수록 그라데이션 효과
-            
-            if(fuelGauge.fillAmount <= 0.3f) {  //연료 부족 경고 애니메이션
-                if(!isDie) fuelWarning.SetActive(true);
-                if(fuelGauge.fillAmount == 0f)  //연료가 다 떨어져서 게임 오버
+
+            if (fuelGauge.fillAmount <= 0.3f)
+            {  //연료 부족 경고 애니메이션
+                if (!isDie) fuelWarning.SetActive(true);
+                if (fuelGauge.fillAmount == 0f)  //연료가 다 떨어져서 게임 오버
                     StartGameOver();
             }
         }
-        else {
-            fuelGauge.color = new Color((1f - fuelGauge.fillAmount) * 2f, 1, 0, 1);  
+        else
+        {
+            fuelGauge.color = new Color((1f - fuelGauge.fillAmount) * 2f, 1, 0, 1);
             fuelWarning.SetActive(false);
         }
     }
 
     //연료를 획득하면 연료 게이지를 꽉 채운다.
-    public void FuelCharge() {
+    public void FuelCharge()
+    {
         carController.Fuel = 1;
         fuelGauge.fillAmount = 1;  //게이지 바 꽉 채운다
         PlaySound("refuel"); //연료충전 사운드 재생
     }
 
     //코인 얻었을 때 함수
-    public void GetCoin(int price) {
+    public void GetCoin(int price)
+    {
         totalMoney += price;
         moneyEarned += price;
         moneyText.text = totalMoney.ToString(); //text에 금액 갱신
@@ -165,19 +214,23 @@ public class GameManager : Singleton<GameManager> {
     }
 
     //엔진 버튼 함수
-    public void GasBtn(bool press) {
+    public void GasBtn(bool press)
+    {
         GasBtnPressed = press;
     }
 
     //브레이크 버튼 함수
-    public void BrakeBtn(bool press) {
+    public void BrakeBtn(bool press)
+    {
         BrakeBtnPressed = press;
     }
 
     //사운드 재생 함순
-    public void PlaySound(string audioName) {
-        switch(audioName) {
-            case "cameraShutter" :
+    public void PlaySound(string audioName)
+    {
+        switch (audioName)
+        {
+            case "cameraShutter":
                 audio[0].Play();
                 break;
             case "coin":
@@ -196,33 +249,37 @@ public class GameManager : Singleton<GameManager> {
     }
 
     //게임 일시정지 함수
-    public void GamePause() {
+    public void GamePause()
+    {
         pauseUI.SetActive(!pauseUI.activeSelf); //일시정지 UI 활성화/비활성화
-        
-        if(pauseUI.activeSelf) Time.timeScale = 0f;
+
+        if (pauseUI.activeSelf) Time.timeScale = 0f;
         else Time.timeScale = 1f;
     }
 
     //게임오버 함수
-    public void StartGameOver() {
-        if(!isDie) {
+    public void StartGameOver()
+    {
+        if (!isDie)
+        {
             StartCoroutine(GameOver());
             isDie = true;
         }
     }
 
-    private IEnumerator GameOver() {
+    private IEnumerator GameOver()
+    {
 
         if (OnlyData.Data.gametype == GameType.Multi)
         {
             PhotonNetwork.LeaveRoom();
         }
-        else if(OnlyData.Data.gametype == GameType.pass)
+        else if (OnlyData.Data.gametype == GameType.pass)
         {
             Debug.Log("Game Over");
         }
 
-        if(!ReachGoal) yield return new WaitForSeconds(0f);
+        if (!ReachGoal) yield return new WaitForSeconds(0f);
 
         carController.moveStop = true;
         fuelWarning.SetActive(false);
@@ -238,16 +295,22 @@ public class GameManager : Singleton<GameManager> {
         captureImg.sprite = spriteImg;
 
         //게임오버 UI의 텍스트 값들을 바꾸고 활성화
-        if(!ReachGoal) gameStateText.text = "<color=#FF4C4C>Game Over</color>";
+        if (!ReachGoal) gameStateText.text = "<color=#FF4C4C>Game Over</color>";
         else gameStateText.text = "<color=#FFFF4C>Game Complete!!</color>";
         moneyEarnedText.text = "+" + moneyEarned.ToString() + " COINS";  //게임 동안 얻은 코인 수를 보여줌
         totaldistanceText.text = " Distance : " + (int)(carController.transform.position.x - carController.StartPos.x) + "m";
         gameOverUI.SetActive(true);
-        
+
         PlaySound("cameraShutter"); //카메라 셔터 사운드 재생
+
+        gameStateText.text = "🏆 You Finished 1st!";
+        Debug.Log("🏆 Player Wins!");
+        playfabSendData.Data.SendLeaderboard(moneyEarned); // Send player's score
+        Debug.Log("moneyEarned++++++" + moneyEarned);
     }
 
-    public void LoadScene(int sceneIndex) {
+    public void LoadScene(int sceneIndex)
+    {
 
         if (OnlyData.Data.gametype == GameType.Multi)
         {
@@ -256,14 +319,14 @@ public class GameManager : Singleton<GameManager> {
             PhotonNetwork.LeaveRoom();
             PhotonNetwork.ConnectUsingSettings();
             PhotonNetwork.LoadLevel(sceneIndex);
-               
+
         }
-        else if(OnlyData.Data.gametype == GameType.pass)
+        else if (OnlyData.Data.gametype == GameType.pass)
         {
             PlayerPrefs.SetInt("Money", totalMoney);  //얻은 코인 데이터 저장
             SceneManager.LoadScene(sceneIndex);
         }
-        
-       
+
+
     }
 }

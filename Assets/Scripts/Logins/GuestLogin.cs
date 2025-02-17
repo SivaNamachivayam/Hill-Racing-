@@ -48,8 +48,8 @@ public class GuestLogin : MonoBehaviour
         //GlobalManager.Instance.guestLogin = this;
         //DontDestroyOnLoad(gameObject);
         //localDataPath = Application.persistentDataPath + "/" + GuestDataFileName;
-        var filename = "guestData.json";
-        localDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), filename);
+        string filename = "guestData.json";
+        localDataPath = Path.Combine(Application.persistentDataPath, filename);
         LoadGuestData(); // Load data on startup if it exists
     }
 

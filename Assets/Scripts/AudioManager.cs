@@ -6,7 +6,8 @@ public class AudioManager : MonoBehaviour
     public Button musicButton;  // Reference to the Music Button
     public Button soundButton;  // Reference to the Sound Button
 
-    private int switchStatus = 1;
+    private int musicStatus = 1;
+    private int soundStatus = 1;
 
     public AudioSource musicSource; // Background Music AudioSource
     public AudioSource[] soundEffects; // Array for Sound Effects
@@ -80,14 +81,14 @@ public class AudioManager : MonoBehaviour
     public void SwitchMusicButtonClick()
     {
         musicButton.transform.localPosition = new Vector3(-musicButton.transform.localPosition.x, musicButton.transform.localPosition.y,0f);
-        switchStatus = (int)Mathf.Sign(musicButton.transform.localPosition.x);
-        Debug.Log("switch status" + switchStatus);
+        musicStatus = (int)Mathf.Sign(musicButton.transform.localPosition.x);
+        Debug.Log("switch status" + musicStatus);
     }
     
     public void SwitchSoundButtonClick()
     {
         soundButton.transform.localPosition = new Vector3(-soundButton.transform.localPosition.x, soundButton.transform.localPosition.y,0f);
-        switchStatus = (int)Mathf.Sign(soundButton.transform.localPosition.x);
-        Debug.Log("switch status" + switchStatus);
+        soundStatus = (int)Mathf.Sign(soundButton.transform.localPosition.x);
+        Debug.Log("switch status" + soundStatus);
     }
 }

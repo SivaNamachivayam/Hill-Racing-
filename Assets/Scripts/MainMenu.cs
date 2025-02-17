@@ -240,7 +240,11 @@ public class MainMenu : MonoBehaviourPun {
         //LoadingPanel.GetComponent<Animator>().SetTrigger("FadeOut");
         //LoadingPanel.SetActive(true);
         //SceneManager.LoadScene(1);
-        if(OnlyData.Data.gametype==GameType.pass)
+        if (OnlyData.Data.gametype == GameType.pass)
+        {
+            LoadingPanel.SetActive(true);
             SceneManager.LoadScene(1);
+        }
+            
     }
 }

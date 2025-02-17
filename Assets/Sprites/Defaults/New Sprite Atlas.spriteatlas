@@ -75,6 +75,7 @@ SpriteAtlas:
     - 38109d91686d9fd49b6ba48297991b68: 21300000
     - cf2df4a1cafb9df4da7cb542ae487210: 21300000
     - 1a51c7a1ece472e4b91d1271203594f8: 21300000
+    - 0a70b2b1a217ddc44a8a333da9737bd2: 21300000
     - a18a53b10efa5074ebfa6047b0bbe01f: 21300000
     - bf8438d1daefe4446879310527c58e94: 21300000
     - c123dad104cde2e4387779747633a280: 21300000
@@ -84,6 +85,7 @@ SpriteAtlas:
     - 25319b22dbc039e4cb55cc4f33c32801: 21300000
     - 0fb20932d28f7424d8685304d60c4fd4: 21300000
     - 58ebba42dd58a04488a146a8dc50fd36: 21300000
+    - bae4a1526b0f6ed439346d7e3e261940: 21300000
     - 5afd2b52e6311db4d972d6ec7a61cb27: 21300000
     - 1337f26249e87354382666b6ad8a454c: 21300000
     - 0e66c562c95101a47a78cf96de178271: 21300000
@@ -223,6 +225,7 @@ SpriteAtlas:
     - fdcb1b897a7a0974ea3ebe857f102f1d: 21300000
     - 55274099cceebd04b8e56db60a1e96d4: 21300000
     - 98748ca99b655614887b210cd8e92b12: 21300000
+    - 28efa4c9b6b511641b52d1aca5775814: 21300000
     - 0dee29c9cdd701b4286bd121d2ebf70b: 21300000
     - 58659bc90396bbe42a566149a00e1c52: 21300000
     - 5d8023e961b224540a507356b2182426: 21300000
@@ -268,6 +271,7 @@ SpriteAtlas:
     - 8949dc9c0e423154dbcbf4c8455b3b49: 21300000
     - 04c345bcadb92344ab6924cff1835f1d: 21300000
     - 8b79dbcc514357f4595714ef19029d8c: 21300000
+    - c0fadeccf96458a409d5d2422f86a238: 21300000
     - b73b1cdc88f9bda41b402bc7164fc785: 21300000
     - 5be433fcff44c064e8966a9e014abf55: 21300000
     - 0a5fb80d63fba5c43bc0975ba7df8c0e: 21300000
@@ -292,6 +296,7 @@ SpriteAtlas:
     - 49f947cda07b4014d818c3920c53aeb9: 21300000
     - f9a42ecd13bdcb945b0bbabc3d4f44d4: 21300000
     - f1fd6fdd616260544ba1064c519d4aec: 21300000
+    - 91323aedfed8eb24ba71d840a01eb252: 21300000
     - c60cdaedccc53ca44b1473b1ffc18201: 21300000
     - 37793bed59fda08489338f84f77aac07: 21300000
     - dc14deed08643324da4d068d7f661c2a: 21300000
@@ -334,6 +339,7 @@ SpriteAtlas:
     - 37666c5fbcbc8044eb1259ae28830482: 21300000
     - 70830a6fc0618514f8bf0f23e0e6d994: 21300000
     - f7866b6fc4d9ed045a24437897c0e0f9: 21300000
+    - eeb43e6f49849004aa43c400933a3f6f: 21300000
     - 2a32ac9fbcc6c2d4d9f2e3b975623063: 21300000
     - b51a40afb37dc47969b97bf8453dd5e0: 21300000
     - ca0fd7afc93589742af72a0b0434f4f8: 21300000
@@ -367,6 +373,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 38109d91686d9fd49b6ba48297991b68, type: 3}
   - {fileID: 21300000, guid: cf2df4a1cafb9df4da7cb542ae487210, type: 3}
   - {fileID: 21300000, guid: 1a51c7a1ece472e4b91d1271203594f8, type: 3}
+  - {fileID: 21300000, guid: 0a70b2b1a217ddc44a8a333da9737bd2, type: 3}
   - {fileID: 21300000, guid: a18a53b10efa5074ebfa6047b0bbe01f, type: 3}
   - {fileID: 21300000, guid: bf8438d1daefe4446879310527c58e94, type: 3}
   - {fileID: 21300000, guid: c123dad104cde2e4387779747633a280, type: 3}
@@ -376,6 +383,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 25319b22dbc039e4cb55cc4f33c32801, type: 3}
   - {fileID: 21300000, guid: 0fb20932d28f7424d8685304d60c4fd4, type: 3}
   - {fileID: 21300000, guid: 58ebba42dd58a04488a146a8dc50fd36, type: 3}
+  - {fileID: 21300000, guid: bae4a1526b0f6ed439346d7e3e261940, type: 3}
   - {fileID: 21300000, guid: 5afd2b52e6311db4d972d6ec7a61cb27, type: 3}
   - {fileID: 21300000, guid: 1337f26249e87354382666b6ad8a454c, type: 3}
   - {fileID: 21300000, guid: 0e66c562c95101a47a78cf96de178271, type: 3}
@@ -515,6 +523,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: fdcb1b897a7a0974ea3ebe857f102f1d, type: 3}
   - {fileID: 21300000, guid: 55274099cceebd04b8e56db60a1e96d4, type: 3}
   - {fileID: 21300000, guid: 98748ca99b655614887b210cd8e92b12, type: 3}
+  - {fileID: 21300000, guid: 28efa4c9b6b511641b52d1aca5775814, type: 3}
   - {fileID: 21300000, guid: 0dee29c9cdd701b4286bd121d2ebf70b, type: 3}
   - {fileID: 21300000, guid: 58659bc90396bbe42a566149a00e1c52, type: 3}
   - {fileID: 21300000, guid: 5d8023e961b224540a507356b2182426, type: 3}
@@ -560,6 +569,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 8949dc9c0e423154dbcbf4c8455b3b49, type: 3}
   - {fileID: 21300000, guid: 04c345bcadb92344ab6924cff1835f1d, type: 3}
   - {fileID: 21300000, guid: 8b79dbcc514357f4595714ef19029d8c, type: 3}
+  - {fileID: 21300000, guid: c0fadeccf96458a409d5d2422f86a238, type: 3}
   - {fileID: 21300000, guid: b73b1cdc88f9bda41b402bc7164fc785, type: 3}
   - {fileID: 21300000, guid: 5be433fcff44c064e8966a9e014abf55, type: 3}
   - {fileID: 21300000, guid: 0a5fb80d63fba5c43bc0975ba7df8c0e, type: 3}
@@ -584,6 +594,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 49f947cda07b4014d818c3920c53aeb9, type: 3}
   - {fileID: 21300000, guid: f9a42ecd13bdcb945b0bbabc3d4f44d4, type: 3}
   - {fileID: 21300000, guid: f1fd6fdd616260544ba1064c519d4aec, type: 3}
+  - {fileID: 21300000, guid: 91323aedfed8eb24ba71d840a01eb252, type: 3}
   - {fileID: 21300000, guid: c60cdaedccc53ca44b1473b1ffc18201, type: 3}
   - {fileID: 21300000, guid: 37793bed59fda08489338f84f77aac07, type: 3}
   - {fileID: 21300000, guid: dc14deed08643324da4d068d7f661c2a, type: 3}
@@ -626,6 +637,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 37666c5fbcbc8044eb1259ae28830482, type: 3}
   - {fileID: 21300000, guid: 70830a6fc0618514f8bf0f23e0e6d994, type: 3}
   - {fileID: 21300000, guid: f7866b6fc4d9ed045a24437897c0e0f9, type: 3}
+  - {fileID: 21300000, guid: eeb43e6f49849004aa43c400933a3f6f, type: 3}
   - {fileID: 21300000, guid: 2a32ac9fbcc6c2d4d9f2e3b975623063, type: 3}
   - {fileID: 21300000, guid: b51a40afb37dc47969b97bf8453dd5e0, type: 3}
   - {fileID: 21300000, guid: ca0fd7afc93589742af72a0b0434f4f8, type: 3}
@@ -658,6 +670,7 @@ SpriteAtlas:
   - menu-bg
   - MainMenuUpgradeAWD
   - icon-accept
+  - 256
   - MainMenuUpgradeSuspension
   - undefined - Imgur
   - trophy
@@ -667,6 +680,7 @@ SpriteAtlas:
   - lowres-moon-ground
   - lowres-stage-icon-arctic-cave
   - Facebook
+  - Right-Yellow1car-256
   - stage-icon-arctic
   - rewardsSprite
   - Image3
@@ -806,6 +820,7 @@ SpriteAtlas:
   - meter-boost
   - sky-bg-forest
   - progressbar
+  - 256-Red-car
   - pedal-brake-pressed
   - terrain-alien-surface
   - stage-icon-forest
@@ -851,6 +866,7 @@ SpriteAtlas:
   - driver-body
   - getjaricon
   - Arrow (1)
+  - Right-pink-car
   - bike-driver-hand-part1
   - stage-icon-highway
   - Coin
@@ -875,6 +891,7 @@ SpriteAtlas:
   - lowres-stage-icon-locked
   - Cloud
   - Pedal2
+  - pngegg (1)
   - sky-bg-cave
   - fuel-icon
   - stage-icon-alienplanet
@@ -917,6 +934,7 @@ SpriteAtlas:
   - button-sound-enabled
   - tree-part2
   - stage-icon-locked
+  - 256-Yellow-car
   - Close-button
   - Snow-road
   - highway-surface

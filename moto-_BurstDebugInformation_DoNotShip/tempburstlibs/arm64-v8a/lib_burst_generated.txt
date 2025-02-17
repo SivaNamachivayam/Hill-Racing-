@@ -20,6 +20,7 @@ Library: C:\Users\mahes\Documents\Hill-Racing-\Temp\BurstOutput\tempburstlibs\ar
 --assembly-defines=PhotonUnityNetworking.Demos;
 --assembly-defines=PhotonUnityNetworking;
 --assembly-defines=PhotonUnityNetworking.Utilities;
+--assembly-defines=PlayFab;
 --assembly-defines=System.Configuration;
 --assembly-defines=System.Core;
 --assembly-defines=System.Data;

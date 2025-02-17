@@ -3,6 +3,7 @@ using PlayFab;
 using PlayFab.ClientModels;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayFabManager : MonoBehaviour
 {
@@ -10,6 +11,22 @@ public class PlayFabManager : MonoBehaviour
     public Transform rowsParent; // Parent container for leaderboard rows
 
     private string playFabId; // Store PlayFab ID after login
+    public static PlayFabManager instance;
+
+    private int earnedvalue;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject); // Destroy duplicate instance
+        }
+    }
 
     void Start()
     {
@@ -33,9 +50,27 @@ public class PlayFabManager : MonoBehaviour
         playFabId = result.PlayFabId;
         Debug.Log("Login successful! PlayFab ID: " + playFabId);
     }
+    public void SetDisplayName()
+    {
+        var request = new UpdateUserTitleDisplayNameRequest
+        {
+            DisplayName = GuestLogin.instance.statusText.text
+        };
 
+        PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdated, NameOnError);
+    }
+
+    private void OnDisplayNameUpdated(UpdateUserTitleDisplayNameResult result)
+    {
+        Debug.Log("Display Name Updated Successfully: " + result.DisplayName);
+    }
+
+    private void NameOnError(PlayFabError error)
+    {
+        Debug.LogError("Error updating display name: " + error.GenerateErrorReport());
+    }
     // Send player's score to PlayFab leaderboard
-    public void SendLeaderboard(int score)
+   /* public void SendLeaderboard(int score)
     {
         var request = new UpdatePlayerStatisticsRequest
         {
@@ -51,7 +86,7 @@ public class PlayFabManager : MonoBehaviour
     void OnLeaderboardUpdate(UpdatePlayerStatisticsResult result)
     {
         Debug.Log("Successfully updated leaderboard!");
-    }
+    }*/
 
     // Get the leaderboard from PlayFab
     public void GetLeaderBoard()
@@ -77,12 +112,12 @@ public class PlayFabManager : MonoBehaviour
         foreach (var item in result.Leaderboard)
         {
             GameObject newGo = Instantiate(rowPrefab, rowsParent);
-            Text[] texts = newGo.GetComponentsInChildren<Text>();
-
+            TextMeshProUGUI[] texts = newGo.GetComponentsInChildren<TextMeshProUGUI>();
+            //earnedvalue = GameManager.Instance.moneyEarned;
             if (texts.Length >= 3) // Ensure we have enough text elements
             {
                 texts[0].text = (item.Position + 1).ToString(); // Rank
-                texts[1].text = item.PlayFabId; // Player ID (Replace with DisplayName later)
+                texts[1].text = item.DisplayName; // Player ID (Replace with DisplayName later)
                 texts[2].text = item.StatValue.ToString(); // Score
             }
 
@@ -95,4 +130,9 @@ public class PlayFabManager : MonoBehaviour
     {
         Debug.LogError("Error: " + error.GenerateErrorReport());
     }
+
+   /* private void OnApplicationQuit()
+    {
+        SendLeaderboard(GameManager.Instance.moneyEarned);
+    }*/
 }
