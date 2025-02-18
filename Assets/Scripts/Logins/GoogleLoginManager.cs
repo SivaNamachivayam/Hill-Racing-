@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using Google;
+using PlayFab.ClientModels;
+using PlayFab;
 
 public class GoogleLoginManager : MonoBehaviour
 {
@@ -90,7 +92,8 @@ public class GoogleLoginManager : MonoBehaviour
         {
             userNameStr = task.Result.DisplayName;
             gname.text = userNameStr;
-           // id.text = task.Result.IdToken;
+            SetDisplayNameGoogle(userNameStr);
+            // id.text = task.Result.IdToken;
 
             googleLoginbool = true;
             PlayerPrefs.SetInt("googleLoginbool", googleLoginbool ? 1 : 0);
@@ -110,7 +113,25 @@ public class GoogleLoginManager : MonoBehaviour
             LoadGoogleData();
         }
     }
+    public void SetDisplayNameGoogle(string FBName)
+    {
+        var request = new UpdateUserTitleDisplayNameRequest
+        {
+            DisplayName = FBName
+        };
 
+        PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdated, NameOnError);
+    }
+
+    private void OnDisplayNameUpdated(UpdateUserTitleDisplayNameResult result)
+    {
+        Debug.Log("Display Name Updated Successfully: " + result.DisplayName);
+    }
+
+    private void NameOnError(PlayFabError error)
+    {
+        Debug.LogError("Error updating display name: " + error.GenerateErrorReport());
+    }
     public void OnSignOut()
     {
         PlayerPrefs.DeleteKey(GoogleUserNameKey);

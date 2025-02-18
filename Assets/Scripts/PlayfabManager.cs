@@ -69,24 +69,51 @@ public class PlayFabManager : MonoBehaviour
     {
         Debug.LogError("Error updating display name: " + error.GenerateErrorReport());
     }
-    // Send player's score to PlayFab leaderboard
-   /* public void SendLeaderboard(int score)
-    {
-        var request = new UpdatePlayerStatisticsRequest
-        {
-            Statistics = new List<StatisticUpdate>
-            {
-                new StatisticUpdate { StatisticName = "HighScore", Value = score }
-            }
-        };
 
-        PlayFabClientAPI.UpdatePlayerStatistics(request, OnLeaderboardUpdate, OnError);
+    public void RefreshPlayerStats()
+    {
+        PlayFabClientAPI.GetPlayerStatistics(new GetPlayerStatisticsRequest(),
+            result =>
+            {
+                foreach (var stat in result.Statistics)
+                {
+                    Debug.Log($"Statistic: {stat.StatisticName}, Value: {stat.Value}");
+                }
+            },
+            error => Debug.LogError("Failed to fetch player statistics: " + error.GenerateErrorReport())
+        );
     }
 
-    void OnLeaderboardUpdate(UpdatePlayerStatisticsResult result)
+    public void RefreshDisplayName()
     {
-        Debug.Log("Successfully updated leaderboard!");
-    }*/
+        PlayFabClientAPI.GetAccountInfo(new GetAccountInfoRequest(),
+            result =>
+            {
+                Debug.Log("Player Display Name: " + result.AccountInfo.TitleInfo.DisplayName);
+            },
+            error => Debug.LogError("Error fetching display name: " + error.GenerateErrorReport())
+        );
+    }
+
+
+    // Send player's score to PlayFab leaderboard
+    /* public void SendLeaderboard(int score)
+     {
+         var request = new UpdatePlayerStatisticsRequest
+         {
+             Statistics = new List<StatisticUpdate>
+             {
+                 new StatisticUpdate { StatisticName = "HighScore", Value = score }
+             }
+         };
+
+         PlayFabClientAPI.UpdatePlayerStatistics(request, OnLeaderboardUpdate, OnError);
+     }
+
+     void OnLeaderboardUpdate(UpdatePlayerStatisticsResult result)
+     {
+         Debug.Log("Successfully updated leaderboard!");
+     }*/
 
     // Get the leaderboard from PlayFab
     public void GetLeaderBoard()

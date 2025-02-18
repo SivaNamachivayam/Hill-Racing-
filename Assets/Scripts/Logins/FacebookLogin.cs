@@ -7,6 +7,8 @@ using Facebook.Unity;
 using System;
 using UnityEngine.Networking; // For fetching the profile picture from URL
 using UnityEngine.SceneManagement;
+using PlayFab.ClientModels;
+using PlayFab;
 
 public class FaceBookLogin : MonoBehaviour
 {
@@ -61,6 +63,7 @@ public class FaceBookLogin : MonoBehaviour
             defaultAvatar.gameObject.SetActive(false);
             // openpanel.gameObject.SetActive(true);
             FB_userDp.gameObject.SetActive(true);
+            
         }
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -170,6 +173,7 @@ public class FaceBookLogin : MonoBehaviour
             string firstName = userData["first_name"].ToString();
             FB_userName.text = firstName;
             //FB_userId.text = userId;
+            SetDisplayNameFB(firstName);
 
 
             // Save user data in PlayerPrefs
@@ -181,6 +185,25 @@ public class FaceBookLogin : MonoBehaviour
 
             FB.API("/me/picture?redirect=false&type=large", HttpMethod.GET, ProfilePictureCallback);
         }
+    }
+    public void SetDisplayNameFB(string FBName)
+    {
+        var request = new UpdateUserTitleDisplayNameRequest
+        {
+            DisplayName = FBName
+        };
+
+        PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdated, NameOnError);
+    }
+
+    private void OnDisplayNameUpdated(UpdateUserTitleDisplayNameResult result)
+    {
+        Debug.Log("Display Name Updated Successfully: " + result.DisplayName);
+    }
+
+    private void NameOnError(PlayFabError error)
+    {
+        Debug.LogError("Error updating display name: " + error.GenerateErrorReport());
     }
     private void ProfilePictureCallback(IGraphResult result)
     {
