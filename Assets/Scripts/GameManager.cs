@@ -38,6 +38,18 @@ public class GameManager : Singleton<GameManager>
     public bool ReachGoal { get; set; }
     public bool NotReachGoal;
 
+    public Button musicsButton;
+    public Button SoundsButton;
+
+    private int musicsStatus = 1;
+    private int soundsStatus = 1;
+
+    public AudioSource musicsSource; // Background Music AudioSource
+    public AudioSource[] soundsEffects; // Array for Sound Effects
+
+    private bool isMusicsOn;
+    private bool isSoundsOn;
+
 
     public string MyDisdanceValue;
     private void Start()
@@ -50,6 +62,65 @@ public class GameManager : Singleton<GameManager>
         startDistance = carController.StartPos.x; // Capture the starting position
         progressBar.minValue = 0;
         progressBar.maxValue = endDistance;
+
+        // Load saved settings from PlayerPrefs
+        isMusicsOn = PlayerPrefs.GetInt("MusicEnabled", 1) == 1;
+        isSoundsOn = PlayerPrefs.GetInt("SoundEnabled", 1) == 1;
+
+        // Apply saved settings
+        ToggleMusic(isMusicsOn);
+        ToggleSound(isSoundsOn);
+
+        // Add button click listeners
+        musicsButton.onClick.AddListener(() => ToggleMusic(!isMusicsOn));
+        SoundsButton.onClick.AddListener(() => ToggleSound(!isSoundsOn));
+    }
+
+    public void ToggleMusic(bool isOn)
+    {
+        isMusicsOn = isOn;
+
+        if (musicsSource != null)
+            musicsSource.mute = !isMusicsOn;
+
+        // Save the setting
+        PlayerPrefs.SetInt("MusicEnabled", isMusicsOn ? 1 : 0);
+        PlayerPrefs.Save();
+
+        // Update button UI (optional)
+        //UpdateButtonUI();
+    }
+
+    public void ToggleSound(bool isOn)
+    {
+        isSoundsOn = isOn;
+
+        foreach (var sound in soundsEffects)
+        {
+            if (sound != null)
+                sound.mute = !isSoundsOn;
+        }
+
+        // Save the setting
+        PlayerPrefs.SetInt("SoundEnabled", isSoundsOn ? 1 : 0);
+        PlayerPrefs.Save();
+
+        // Update button UI (optional)
+        //UpdateButtonUI();
+    }
+
+    public void SwitchMusicButtonClick()
+    {
+        musicsButton.transform.localPosition = new Vector3(-musicsButton.transform.localPosition.x, musicsButton.transform.localPosition.y, 0f);
+        musicsStatus = (int)Mathf.Sign(musicsButton.transform.localPosition.x);
+        Debug.Log("switch status" + musicsStatus);
+    }
+
+    public void SwitchSoundButtonClick()
+    {
+        SoundsButton.transform.localPosition = new Vector3(-SoundsButton.transform.localPosition.x, SoundsButton.transform.localPosition.y, 0f);
+        soundsStatus = (int)Mathf.Sign(SoundsButton.transform.localPosition.x);
+        Debug.Log("switch status" + soundsStatus);
     }
 
     private void Update()

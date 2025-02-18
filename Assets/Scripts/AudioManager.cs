@@ -5,9 +5,13 @@ public class AudioManager : MonoBehaviour
 {
     public Button musicButton;  // Reference to the Music Button
     public Button soundButton;  // Reference to the Sound Button
+    public Button drawDirtButton;  // Reference to the Sound Button
+    public Button pedalsButton;  // Reference to the Sound Button
 
     private int musicStatus = 1;
     private int soundStatus = 1;
+    private int drawDirtStatus = 1;
+    private int pedalsStatus = 1;
 
     public AudioSource musicSource; // Background Music AudioSource
     public AudioSource[] soundEffects; // Array for Sound Effects
@@ -90,5 +94,21 @@ public class AudioManager : MonoBehaviour
         soundButton.transform.localPosition = new Vector3(-soundButton.transform.localPosition.x, soundButton.transform.localPosition.y,0f);
         soundStatus = (int)Mathf.Sign(soundButton.transform.localPosition.x);
         Debug.Log("switch status" + soundStatus);
+    } 
+
+    public void SwitchDirtButtonClick()
+    {
+        drawDirtButton.transform.localPosition = new Vector3(-drawDirtButton.transform.localPosition.x, drawDirtButton.transform.localPosition.y,0f);
+        drawDirtStatus = (int)Mathf.Sign(drawDirtButton.transform.localPosition.x);
+        Debug.Log("switch status" + drawDirtStatus);
     }
+
+    public void SwitchPedalsButtonClick()
+    {
+        pedalsButton.transform.localPosition = new Vector3(-pedalsButton.transform.localPosition.x, pedalsButton.transform.localPosition.y,0f);
+        pedalsStatus = (int)Mathf.Sign(pedalsButton.transform.localPosition.x);
+        Debug.Log("switch status" + pedalsStatus);
+    }
+
+
 }

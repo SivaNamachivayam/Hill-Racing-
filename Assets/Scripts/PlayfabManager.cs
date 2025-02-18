@@ -33,7 +33,7 @@ public class PlayFabManager : MonoBehaviour
         Login();
     }
 
-    // 🔹 Automatically log in the player (Guest Login)
+    // 🔹 Automatically log in the player ( Login)
     public void Login()
     {
         var request = new LoginWithCustomIDRequest

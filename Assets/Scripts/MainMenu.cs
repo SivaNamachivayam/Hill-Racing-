@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
 using Photon.Realtime;
+using System.Collections;
 
 public class MainMenu : MonoBehaviourPun {
 
@@ -243,8 +244,15 @@ public class MainMenu : MonoBehaviourPun {
         if (OnlyData.Data.gametype == GameType.pass)
         {
             LoadingPanel.SetActive(true);
+            //StartCoroutine(LoadingScreen());
             SceneManager.LoadScene(1);
         }
             
     }
+
+   /* IEnumerator LoadingScreen()
+    {
+        LoadingPanel.SetActive(true);
+        yield return new WaitForSeconds(0.3f);
+    }*/
 }
