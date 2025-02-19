@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 using Photon.Realtime;
 using System.Collections;
 
-public class MainMenu : MonoBehaviourPun {
+public class MainMenu : MonoBehaviourPun
+{
 
     public GameObject scrollView, scrollbar, purchaseUI;
 
@@ -14,7 +15,8 @@ public class MainMenu : MonoBehaviourPun {
     public GameObject[] content;
 
     public Text moneyText, cantBuyText;
-
+    public string url = "https://recinfotech.com/privacy.html";
+    public string facebookURL = "https://www.facebook.com/share/1EzCSotJCr/";
 
     public float scroll_pos = 0, distance;
     public float[] pos;
@@ -40,11 +42,13 @@ public class MainMenu : MonoBehaviourPun {
                 PhotonNetwork.GameVersion = "1.0";
             }
         }
-        
+
     }
-    private void Start() {
-      
-        if(!PlayerPrefs.HasKey("Stage")) {
+    private void Start()
+    {
+
+        if (!PlayerPrefs.HasKey("Stage"))
+        {
             PlayerPrefs.SetInt("Stage", 0);
             PlayerPrefs.SetInt("Vehicle", 0);
 
@@ -60,12 +64,22 @@ public class MainMenu : MonoBehaviourPun {
             PlayerPrefs.SetInt("Money", 500000);
         }
         LoadData();
-        MenuChange(1);  
+        MenuChange(1);
         start = false;
     }
 
-    
-    private void LoadData() {
+    public void OpenWebsite()
+    {
+        Application.OpenURL(url);
+    }
+
+    public void OpenFacebookPage()
+    {
+        Application.OpenURL(facebookURL);
+    }
+
+    private void LoadData()
+    {
 
         Stages[1].transform.GetChild(1).gameObject.SetActive(PlayerPrefs.GetInt("Stage_1").Equals(0));
         Stages[1].GetComponent<Button>().enabled = PlayerPrefs.GetInt("Stage_1").Equals(0);
@@ -85,14 +99,19 @@ public class MainMenu : MonoBehaviourPun {
         moneyText.text = PlayerPrefs.GetInt("Money").ToString();
     }
 
-    private void Update() {
-        
-        if(Input.GetMouseButton(0)) {
+    private void Update()
+    {
+
+        if (Input.GetMouseButton(0))
+        {
             scroll_pos = scrollbar.GetComponent<Scrollbar>().value;
         }
-        else {
-            for(int i = 0; i < pos.Length; i++) {
-                if(scroll_pos < pos[i] + (distance / 2) && scroll_pos > pos[i] - (distance / 2)) {
+        else
+        {
+            for (int i = 0; i < pos.Length; i++)
+            {
+                if (scroll_pos < pos[i] + (distance / 2) && scroll_pos > pos[i] - (distance / 2))
+                {
                     scrollbar.GetComponent<Scrollbar>().value = Mathf.Lerp(scrollbar.GetComponent<Scrollbar>().value, pos[i], 0.1f);
                     selectedIndex = i;
                 }
@@ -100,15 +119,18 @@ public class MainMenu : MonoBehaviourPun {
             changeIndex = true;
         }
 
-        
-        for(int i = 0; i < pos.Length; i++) {
-            if(scroll_pos < pos[i] + (distance / 2) && scroll_pos > pos[i] - (distance / 2)) {
+
+        for (int i = 0; i < pos.Length; i++)
+        {
+            if (scroll_pos < pos[i] + (distance / 2) && scroll_pos > pos[i] - (distance / 2))
+            {
                 content[i].transform.localScale = Vector2.Lerp(content[i].transform.localScale, new Vector2(1.2f, 1.2f), 0.1f);
-                for(int j = 0; j < pos.Length; j++)
-                    if(j != i)
+                for (int j = 0; j < pos.Length; j++)
+                    if (j != i)
                         content[j].transform.localScale = Vector2.Lerp(content[j].transform.localScale, new Vector2(0.8f, 0.8f), 0.1f);
 
-                if(changeIndex) {  
+                if (changeIndex)
+                {
                     SaveSelectedData(i);
                     changeIndex = false;
                 }
@@ -116,43 +138,50 @@ public class MainMenu : MonoBehaviourPun {
         }
     }
 
-    
-    public void MenuChange(int index) {
-        
-        if(!CheckPurchased() && !start) {
-            if(!(selectedMenuIndex == 0 && selectedIndex > 1 || selectedMenuIndex == 1 && selectedIndex > 1)) {
+
+    public void MenuChange(int index)
+    {
+
+        if (!CheckPurchased() && !start)
+        {
+            if (!(selectedMenuIndex == 0 && selectedIndex > 1 || selectedMenuIndex == 1 && selectedIndex > 1))
+            {
                 purchaseUI.SetActive(true);
                 return;
             }
-        }    
-        selectedMenuIndex = index;  
+        }
+        selectedMenuIndex = index;
 
         pos = new float[Contents[index].transform.childCount];
         distance = 1f / (pos.Length - 1f);
-        for(int i = 0; i < pos.Length; i++)
+        for (int i = 0; i < pos.Length; i++)
             pos[i] = distance * i;
 
-        if(index.Equals(0)) { 
+        if (index.Equals(0))
+        {
             content = Stages;
             scroll_pos = scrollbar.GetComponent<Scrollbar>().value = pos[PlayerPrefs.GetInt("Stage")];
         }
-        else if(index.Equals(1)) {  
+        else if (index.Equals(1))
+        {
             content = Vehicles;
             scroll_pos = scrollbar.GetComponent<Scrollbar>().value = pos[PlayerPrefs.GetInt("Vehicle")];
         }
 
-        foreach(var obj in Contents)
+        foreach (var obj in Contents)
             obj.SetActive(false);
         Contents[index].SetActive(true);
         scrollView.GetComponent<ScrollRect>().content = Contents[index].GetComponent<RectTransform>();
     }
 
-    public void Purchase() {
+    public void Purchase()
+    {
         int price, moneyOwned = 500000;
-        if(Contents[0].activeSelf) {
+        if (Contents[0].activeSelf)
+        {
             Debug.Log("STAGE SELECT");
             price = int.Parse(Stages[selectedIndex].transform.GetChild(1).gameObject.transform.GetChild(1).GetComponent<Text>().text);
-            if(moneyOwned - price < 0) { cantBuyText.GetComponent<Animator>().SetTrigger("warning"); return; }
+            if (moneyOwned - price < 0) { cantBuyText.GetComponent<Animator>().SetTrigger("warning"); return; }
             //if(selectedIndex.Equals(1)) PlayerPrefs.SetInt("Stage_Mars", 1);
 
             switch (selectedIndex)
@@ -175,10 +204,11 @@ public class MainMenu : MonoBehaviourPun {
             PlayerPrefs.SetInt("Money", moneyOwned - price);
             LoadData();
         }
-        else if(Contents[1].activeSelf){
+        else if (Contents[1].activeSelf)
+        {
             Debug.Log("VACHILE SELECT");
             price = int.Parse(Vehicles[selectedIndex].transform.GetChild(1).gameObject.transform.GetChild(1).GetComponent<Text>().text);
-            if(moneyOwned - price < 0) { cantBuyText.GetComponent<Animator>().SetTrigger("warning"); return; }
+            if (moneyOwned - price < 0) { cantBuyText.GetComponent<Animator>().SetTrigger("warning"); return; }
 
             switch (selectedIndex)
             {
@@ -200,40 +230,49 @@ public class MainMenu : MonoBehaviourPun {
             PlayerPrefs.SetInt("Money", moneyOwned - price);
             LoadData();
         }
-       
+
     }
 
-    
-    private bool CheckPurchased() {
-        if(selectedMenuIndex.Equals(0)) {
-            if(selectedIndex != 0)
+
+    private bool CheckPurchased()
+    {
+        if (selectedMenuIndex.Equals(0))
+        {
+            if (selectedIndex != 0)
                 return !Stages[selectedIndex].transform.GetChild(1).gameObject.activeSelf;
         }
-        else { 
-            if(selectedIndex != 0) 
+        else
+        {
+            if (selectedIndex != 0)
                 return !Vehicles[selectedIndex].transform.GetChild(1).gameObject.activeSelf;
         }
         return true;
     }
 
-   
-    private void SaveSelectedData(int index) {
-        if(selectedMenuIndex.Equals(0)) {
-            if(!CheckPurchased()) return; 
+
+    private void SaveSelectedData(int index)
+    {
+        if (selectedMenuIndex.Equals(0))
+        {
+            if (!CheckPurchased()) return;
             PlayerPrefs.SetInt("Stage", index);
             RoomCreationManager.data.MapName = PlayerPrefs.GetInt("Stage").ToString();
             RoomCreationManager.data.isLobbyJoined = false;
         }
-        else {
-            if(!CheckPurchased()) return; 
+        else
+        {
+            if (!CheckPurchased()) return;
             PlayerPrefs.SetInt("Vehicle", index);
         }
     }
 
-    
-    public void GameStart() {
-        if(!CheckPurchased()) {
-            if(!(selectedMenuIndex == 0 && selectedIndex > 1 || selectedMenuIndex == 1 && selectedIndex > 1)) {
+
+    public void GameStart()
+    {
+        if (!CheckPurchased())
+        {
+            if (!(selectedMenuIndex == 0 && selectedIndex > 1 || selectedMenuIndex == 1 && selectedIndex > 1))
+            {
                 purchaseUI.SetActive(true);
                 return;
             }
@@ -247,12 +286,12 @@ public class MainMenu : MonoBehaviourPun {
             //StartCoroutine(LoadingScreen());
             SceneManager.LoadScene(1);
         }
-            
+
     }
 
-   /* IEnumerator LoadingScreen()
-    {
-        LoadingPanel.SetActive(true);
-        yield return new WaitForSeconds(0.3f);
-    }*/
+    /* IEnumerator LoadingScreen()
+     {
+         LoadingPanel.SetActive(true);
+         yield return new WaitForSeconds(0.3f);
+     }*/
 }
