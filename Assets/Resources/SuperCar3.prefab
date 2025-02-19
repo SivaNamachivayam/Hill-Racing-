@@ -585,8 +585,8 @@ HingeJoint2D:
     m_MaximumMotorForce: 10000
   m_UseLimits: 1
   m_AngleLimits:
-    m_LowerAngle: -100
-    m_UpperAngle: 100
+    m_LowerAngle: -46.20358
+    m_UpperAngle: 38.910915
 --- !u!1 &4536955731919613366
 GameObject:
   m_ObjectHideFlags: 0

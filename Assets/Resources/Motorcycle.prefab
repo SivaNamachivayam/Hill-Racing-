@@ -798,7 +798,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frontTire: {fileID: 4103106964970145232}
   backTire: {fileID: 4103106965049294007}
-  speed: 2800
+  speed: 2500
   moveStop: 0
 --- !u!50 &4103106965185028263
 Rigidbody2D:
@@ -1324,8 +1324,8 @@ HingeJoint2D:
     m_MaximumMotorForce: 10000
   m_UseLimits: 1
   m_AngleLimits:
-    m_LowerAngle: -100
-    m_UpperAngle: 100
+    m_LowerAngle: -40.809696
+    m_UpperAngle: 34.676125
 --- !u!1 &4103106966382771704
 GameObject:
   m_ObjectHideFlags: 0
