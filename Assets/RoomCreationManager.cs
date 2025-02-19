@@ -34,6 +34,7 @@ public class RoomCreationManager : MonoBehaviourPunCallbacks
     }
     public void Start()
     {
+
         MapName = PlayerPrefs.GetInt("Stage").ToString();
 
         if (!PhotonNetwork.IsConnected)
@@ -41,6 +42,7 @@ public class RoomCreationManager : MonoBehaviourPunCallbacks
             PhotonNetwork.ConnectUsingSettings();
             PhotonNetwork.GameVersion = "1.0";
         }
+
     }
     // Called when connected to the Photon server
     public override void OnConnectedToMaster()
@@ -92,7 +94,7 @@ public class RoomCreationManager : MonoBehaviourPunCallbacks
         else
         {
             PhotonNetwork.LeaveLobby();
-            Debug.LogWarning("Not in lobby yet. Trying again in 2 seconds...");
+            Debug.Log("Not in lobby yet. Trying again in 2 seconds...");
             JoinLobby(MapName, LobbyType.Default);
             Invoke(nameof(JoinRoom), 2f); // Retry after 2 seconds
         }

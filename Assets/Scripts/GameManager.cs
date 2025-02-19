@@ -144,8 +144,9 @@ public class GameManager : Singleton<GameManager>
 
         if (isDie && Input.GetMouseButtonDown(0) && gameOverUI.activeSelf)
         {
-            LoadScene(0);
             playfabSendData.Data.SendLeaderboard(moneyEarned); // Send player's score
+            LoadScene(0);
+
         }
 
         if (GasBtnPressed || BrakeBtnPressed)
@@ -218,8 +219,10 @@ public class GameManager : Singleton<GameManager>
             if (fuelGauge.fillAmount <= 0.3f)
             {  //연료 부족 경고 애니메이션
                 if (!isDie) fuelWarning.SetActive(true);
-                if (fuelGauge.fillAmount == 0f)  //연료가 다 떨어져서 게임 오버
+                if (fuelGauge.fillAmount == 0f) {
+                    GameManager.Instance.gameStateText.text = "<color=#FFFF4C>YOU LOSE!!!</color>";
                     StartGameOver();
+                }  //연료가 다 떨어져서 게임 오버
             }
         }
         else
@@ -347,10 +350,9 @@ public class GameManager : Singleton<GameManager>
         if (OnlyData.Data.gametype == GameType.Multi)
         {
             PlayerPrefs.SetInt("Money", totalMoney);
-            RoomCreationManager.data.isLobbyJoined = false;
             PhotonNetwork.LeaveRoom();
-            PhotonNetwork.ConnectUsingSettings();
             PhotonNetwork.LoadLevel(sceneIndex);
+            //StartCoroutine(GameOver());
 
         }
         else if (OnlyData.Data.gametype == GameType.pass)
