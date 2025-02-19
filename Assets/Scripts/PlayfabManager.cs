@@ -17,18 +17,10 @@ public class PlayFabManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (instance != this)
-        {
-            Destroy(gameObject); // Destroy duplicate instance
-        }
+        instance = this;
     }
 
-    void Start()
+    void OnEnable()
     {
         Login();
     }
@@ -158,8 +150,8 @@ public class PlayFabManager : MonoBehaviour
         Debug.LogError("Error: " + error.GenerateErrorReport());
     }
 
-   /* private void OnApplicationQuit()
-    {
-        SendLeaderboard(GameManager.Instance.moneyEarned);
-    }*/
+    /* private void OnApplicationQuit()
+     {
+         SendLeaderboard(GameManager.Instance.moneyEarned);
+     }*/
 }
