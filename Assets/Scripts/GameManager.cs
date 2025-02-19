@@ -52,6 +52,7 @@ public class GameManager : Singleton<GameManager>
 
 
     public string MyDisdanceValue;
+    
     private void Start()
     {
         Time.timeScale = 1f;
@@ -139,47 +140,17 @@ public class GameManager : Singleton<GameManager>
             float progressPercentage = (currentDistance / endDistance) * 100f;
             distanceText.text = $"{progressPercentage:F1}%"; // Format to 1 decimal place
             MyDisdanceValue = $"{progressPercentage:F1}%";
-
-            /*// ✅ Check if player reaches the finish line
-            if (currentDistance >= endDistance)
-            {
-                GameOver();
-            }
-
-            // ✅ Check if all other players have left (for multiplayer)
-            if (AreAllOtherPlayersDisconnected())
-            {
-                GameOver();
-            }*/
         }
 
         if (isDie && Input.GetMouseButtonDown(0) && gameOverUI.activeSelf)
         {
             LoadScene(0);
-            gameStateText.text = "🏆 You Finished 1st!";
-            Debug.Log("🏆 Player Wins!");
             playfabSendData.Data.SendLeaderboard(moneyEarned); // Send player's score
         }
 
-        //엔진/브레이크 버튼 누를 시에 사운드 재생
         if (GasBtnPressed || BrakeBtnPressed)
             PlaySound("engine");
     }
-
-    /*void PlayerWins()
-    {
-        //ReachGoal = true;
-        
-
-        *//*// ✅ Update PlayFab leaderboard (optional)
-        if (playfabManager == null)
-            playfabManager = FindObjectOfType<PlayFabManager>();*//*
-
-        PlayFabManager.instance.SendLeaderboard(moneyEarned); // Send player's score
-
-        // ✅ Show UI / Trigger victory animation (if needed)
-        gameOverUI.SetActive(true);
-    }*/
 
     bool AreAllOtherPlayersDisconnected()
     {
@@ -187,13 +158,11 @@ public class GameManager : Singleton<GameManager>
         return activePlayers == 1; // If only 1 player remains, they win
     }
 
-    //게임 초기 세팅 함수
     private void Initialize()
     {
         string objName = "";
         int stageIndex = PlayerPrefs.GetInt("Stage"), vehicleIndex = PlayerPrefs.GetInt("Vehicle");
 
-        //선택한 맵 불러오기
         if (stageIndex.Equals(0))
         {
             objName = "Country";
@@ -210,7 +179,6 @@ public class GameManager : Singleton<GameManager>
             objName = "Stage4";
 
         objectManager.GetObject(objName);
-        //선택한 차량 불러오기/오브젝트 생성
 
         if (vehicleIndex.Equals(0))
         {
@@ -229,22 +197,17 @@ public class GameManager : Singleton<GameManager>
             objName = "SuperCar3";
         }
 
-        //if (vehicleIndex.Equals(0)) objName = "HillClimber";
-        //else if(vehicleIndex.Equals(1)) objName = "Motorcycle";
         CarController vehicle = objectManager.GetObject(objName).GetComponent<CarController>();
 
         carController = vehicle;
 
-        //카메라 조정
         cameraController.vehiclePos = vehicle.gameObject.transform;
         cameraController.SetUp();
 
-        //소유한 돈의 데이터를 불러와 text 갱신
         totalMoney = PlayerPrefs.GetInt("Money");
         moneyText.text = totalMoney.ToString();
     }
 
-    //연료 소비 함수
     public void FuelConsume()
     {
         fuelGauge.fillAmount = carController.Fuel;  //움직일수록 연료 게이지를 줄어들게한다.
@@ -266,7 +229,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    //연료를 획득하면 연료 게이지를 꽉 채운다.
+    
     public void FuelCharge()
     {
         carController.Fuel = 1;
@@ -348,6 +311,7 @@ public class GameManager : Singleton<GameManager>
         else if (OnlyData.Data.gametype == GameType.pass)
         {
             Debug.Log("Game Over");
+            gameStateText.text = "<color=#FF4C4C>Game Over!!!</color>";
         }
 
         if (!ReachGoal) yield return new WaitForSeconds(0f);
@@ -366,16 +330,13 @@ public class GameManager : Singleton<GameManager>
         captureImg.sprite = spriteImg;
 
         //게임오버 UI의 텍스트 값들을 바꾸고 활성화
-        if (!ReachGoal) gameStateText.text = "<color=#FF4C4C>Game Over</color>";
-        else gameStateText.text = "<color=#FFFF4C>Game Complete!!</color>";
+        //if (!ReachGoal) gameStateText.text = "<color=#FF4C4C>Game Over</color>";
+        //else gameStateText.text = "<color=#FFFF4C>Game Complete!!</color>";
         moneyEarnedText.text = "+" + moneyEarned.ToString() + " COINS";  //게임 동안 얻은 코인 수를 보여줌
         totaldistanceText.text = " Distance : " + (int)(carController.transform.position.x - carController.StartPos.x) + "m";
         gameOverUI.SetActive(true);
 
         PlaySound("cameraShutter"); //카메라 셔터 사운드 재생
-
-        gameStateText.text = "🏆 You Finished 1st!";
-        Debug.Log("🏆 Player Wins!");
         playfabSendData.Data.SendLeaderboard(moneyEarned); // Send player's score
         Debug.Log("moneyEarned++++++" + moneyEarned);
     }

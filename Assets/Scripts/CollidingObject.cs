@@ -17,6 +17,7 @@ public class CollidingObject : MonoBehaviourPun {
             else if(gameObject.name.Contains("Goal")) {  
                 GameManager.Instance.ReachGoal = true;
                 PhotonRPC.Data.MasterSendMessage();
+                GameManager.Instance.gameStateText.text = "<color=#FFFF4C>YOU WIN!!!</color>";
                 GameManager.Instance.StartGameOver();
             }
 

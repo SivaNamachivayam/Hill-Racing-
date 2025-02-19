@@ -83,11 +83,13 @@ public class PhotonRPC : MonoBehaviourPunCallbacks
             if (GameManager.Instance.NotReachGoal)
             {
                 Debug.Log("m / <color=yellow> ++++ YOU LOSE ++++ </color>");
+                GameManager.Instance.gameStateText.text = "<color=#FFFF4C>YOU LOSE!!!</color>";
                 GameManager.Instance.StartGameOver();
             }
             else if(!GameManager.Instance.NotReachGoal)
             {
                 Debug.Log("m / <color=yellow> ++++ YOU WIN ++++ </color>");
+                GameManager.Instance.gameStateText.text = "<color=#FFFF4C>YOU WIN!!!</color>";
                 GameManager.Instance.StartGameOver();
             }
         }
