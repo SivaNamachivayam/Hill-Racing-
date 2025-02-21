@@ -31,7 +31,8 @@ public class PhotonRPC : MonoBehaviourPunCallbacks
 
         // Convert Dictionary to JSON and send to other players
         string jsonData = JsonConvert.SerializeObject(playerDistances);
-        ThisPV.RPC("ReceivePlayerDistances", RpcTarget.Others, jsonData);
+        if (OnlyData.Data.gametype == GameType.Multi)
+            ThisPV.RPC("ReceivePlayerDistances", RpcTarget.Others, jsonData);
     }
 
     [PunRPC]
@@ -49,7 +50,7 @@ public class PhotonRPC : MonoBehaviourPunCallbacks
             {
                 Debug.Log("CHECK CLONE");
                 // Create a new Text object for this player
-                 newText = Instantiate(textPrefab, parentPanel);
+                newText = Instantiate(textPrefab, parentPanel);
                 TextMeshProUGUI textComponent = newText.GetComponent<TextMeshProUGUI>();
 
                 // Store it in the dictionary for future updates
@@ -78,7 +79,7 @@ public class PhotonRPC : MonoBehaviourPunCallbacks
 
         Debug.Log(playerName + " left the room. UI updated.");
 
-        if(PhotonNetwork.CurrentRoom.PlayerCount == 1)
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
         {
             if (GameManager.Instance.NotReachGoal)
             {
@@ -86,20 +87,20 @@ public class PhotonRPC : MonoBehaviourPunCallbacks
                 GameManager.Instance.gameStateText.text = "<color=#FFFF4C>YOU LOSE!!!</color>";
                 GameManager.Instance.StartGameOver();
             }
-            else if(!GameManager.Instance.NotReachGoal)
+            else if (!GameManager.Instance.NotReachGoal)
             {
                 Debug.Log("m / <color=yellow> ++++ YOU WIN ++++ </color>");
                 GameManager.Instance.gameStateText.text = "<color=#FFFF4C>YOU WIN!!!</color>";
                 GameManager.Instance.StartGameOver();
             }
         }
-        
+
     }
 
     //++++++++++++++++++++++
     public void MasterSendMessage()
     {
-        ThisPV.RPC("ClientCall", RpcTarget.Others,true);
+        ThisPV.RPC("ClientCall", RpcTarget.Others, true);
     }
 
     [PunRPC]
