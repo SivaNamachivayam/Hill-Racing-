@@ -147,6 +147,7 @@ public class PlayFabManager : MonoBehaviour
     // Handle errors
     void OnError(PlayFabError error)
     {
+        Debug.Log("PLAYFABCALLING");
         Debug.LogError("Error: " + error.GenerateErrorReport());
     }
 

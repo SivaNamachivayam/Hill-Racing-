@@ -350,7 +350,11 @@ public class GameManager : Singleton<GameManager>
         if (OnlyData.Data.gametype == GameType.Multi)
         {
             PlayerPrefs.SetInt("Money", totalMoney);
-            PhotonNetwork.LeaveRoom();
+            Time.timeScale = 1f;
+            if (PhotonNetwork.IsConnected && PhotonNetwork.InRoom)
+            {
+                PhotonNetwork.LeaveRoom();
+            }
             PhotonNetwork.LoadLevel(sceneIndex);
             //StartCoroutine(GameOver());
 

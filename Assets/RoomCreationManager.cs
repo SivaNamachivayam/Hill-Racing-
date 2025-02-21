@@ -93,7 +93,10 @@ public class RoomCreationManager : MonoBehaviourPunCallbacks
         }
         else
         {
-            PhotonNetwork.LeaveLobby();
+            if (PhotonNetwork.InLobby)
+            {
+                PhotonNetwork.LeaveLobby();
+            }
             Debug.Log("Not in lobby yet. Trying again in 2 seconds...");
             JoinLobby(MapName, LobbyType.Default);
             Invoke(nameof(JoinRoom), 2f); // Retry after 2 seconds
