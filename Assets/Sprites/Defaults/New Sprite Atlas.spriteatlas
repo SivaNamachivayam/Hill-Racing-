@@ -274,6 +274,7 @@ SpriteAtlas:
     - c0fadeccf96458a409d5d2422f86a238: 21300000
     - b73b1cdc88f9bda41b402bc7164fc785: 21300000
     - 5be433fcff44c064e8966a9e014abf55: 21300000
+    - 2c6199fc59221b24ebb15ece3fceeb8b: 21300000
     - 0a5fb80d63fba5c43bc0975ba7df8c0e: 21300000
     - 1269cb0d83c292f4fb0a69d42988d881: 21300000
     - 88dd0c1db50e3134099657c2b863fa3e: 21300000
@@ -572,6 +573,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: c0fadeccf96458a409d5d2422f86a238, type: 3}
   - {fileID: 21300000, guid: b73b1cdc88f9bda41b402bc7164fc785, type: 3}
   - {fileID: 21300000, guid: 5be433fcff44c064e8966a9e014abf55, type: 3}
+  - {fileID: 21300000, guid: 2c6199fc59221b24ebb15ece3fceeb8b, type: 3}
   - {fileID: 21300000, guid: 0a5fb80d63fba5c43bc0975ba7df8c0e, type: 3}
   - {fileID: 21300000, guid: 1269cb0d83c292f4fb0a69d42988d881, type: 3}
   - {fileID: 21300000, guid: 88dd0c1db50e3134099657c2b863fa3e, type: 3}
@@ -869,6 +871,7 @@ SpriteAtlas:
   - Right-pink-car
   - bike-driver-hand-part1
   - stage-icon-highway
+  - 512 (3)
   - Coin
   - Image2
   - Car
